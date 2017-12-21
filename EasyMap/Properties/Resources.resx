@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ServerConnectionFaild" xml:space="preserve">
+    <value>服务器连接失败，原因：</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="HomeNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HomeNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AdpDiagramDeleteTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdpDiagramDeleteTable.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DATABASE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DATABASE.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReviewCompareTwoVersions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ReviewCompareTwoVersions.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotSaveWhenOpen" xml:space="preserve">
+    <value>是否将打开的图层数据导入到数据库中？如果不保存到数据库中，那么在该图层上的修改和增加的元素都将不被保存到数据库中。</value>
+    <comment>打开图层时的提示信息</comment>
+  </data>
+  <data name="ReportLayer" xml:space="preserve">
+    <value>影像图</value>
+  </data>
+  <data name="学校" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\学校.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Flag.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pan.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FindDialog1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FindDialog1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveAndClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SaveAndClose.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FootnotesEndnotesShow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FootnotesEndnotesShow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ObjectEditPoints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ObjectEditPoints.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bar2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MoreControlsDialog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MoreControlsDialog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resourcesNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resourcesNew.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circle.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GroupTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GroupTable.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chat.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ball_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ball_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FileDocumentEncrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FileDocumentEncrypt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="area_zoom_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\area_zoom_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="其他" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\其他.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="救援队" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\救援队.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="船" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\船.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="遇难注记" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\遇难注记.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="无人机" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\无人机.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="救援船舶" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\救援船舶.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ApplyCurrencyFormat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ApplyCurrencyFormat.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="22222" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\22222.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cut.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotOpenMapName" xml:space="preserve">
+    <value>地图</value>
+    <comment>未新建或者打开地图时，树状列表根节点名称</comment>
+  </data>
+  <data name="NewRandomGeometry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NewRandomGeometry.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PhotoLayer" xml:space="preserve">
+    <value>影像图层</value>
+  </data>
+  <data name="NewLayerDefaultName" xml:space="preserve">
+    <value>新图层</value>
+    <comment>新建图层的默认名称</comment>
+  </data>
+  <data name="MailMergeGoToPreviousRecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MailMergeGoToPreviousRecord.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zoom In.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rectangle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rectangle.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomin_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomin_over.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlogInsertCategories" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlogInsertCategories.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TextWrappingThrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TextWrappingThrough.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultMapName" xml:space="preserve">
+    <value>未命名地图</value>
+    <comment>默认地图名称</comment>
+  </data>
+  <data name="left_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AreaInfoLayer" xml:space="preserve">
+    <value>宗地信息图层</value>
+  </data>
+  <data name="LoadTifTipMessage" xml:space="preserve">
+    <value>是否加载影像图？</value>
+    <comment>打开地图时是否需要加载TIF</comment>
+  </data>
+  <data name="PriceLayer" xml:space="preserve">
+    <value>房屋售价图层</value>
+  </data>
+  <data name="left_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left_over.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChartSaveTemplates" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChartSaveTemplates.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TableBorderPenColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TableBorderPenColorPicker.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RelationshipsReportNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationshipsReportNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="用户登录" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\用户登录.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="13221819" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\13221819.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DiagramChangeToTargetClassicSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DiagramChangeToTargetClassicSelect.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RemoveTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RemoveTable.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DatabaseCopyDatabaseFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DatabaseCopyDatabaseFile.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus_select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus_select.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeclineTask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeclineTask.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MailMergeGotToLastRecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MailMergeGotToLastRecord.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="polygon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\polygon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bollon_normal2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bollon_normal2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Solid.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BorderDrawGrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BorderDrawGrid.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ActiveXImageNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ActiveXImageNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconpng" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconpng.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrintSetupDialog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PrintSetupDialog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RentLayer" xml:space="preserve">
+    <value>房屋租赁图层</value>
+  </data>
+  <data name="WorldPosFormat" xml:space="preserve">
+    <value>坐标: {0:N5}, {1:N5}</value>
+    <comment>显示坐标信息格式</comment>
+  </data>
+  <data name="Grammar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Grammar.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DiagramChangeToTargetClassic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DiagramChangeToTargetClassic.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RulerShowHide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RulerShowHide.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomin_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomin_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlogManageAccounts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlogManageAccounts.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InputMotionPointTipMessage" xml:space="preserve">
+    <value>请输入监测点名称：</value>
+  </data>
+  <data name="PropertySheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PropertySheet.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdpDiagramDeleteTable.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaleLayer" xml:space="preserve">
+    <value>交易案例图层</value>
+  </data>
+  <data name="OutlinePromote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OutlinePromote.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrintDialogAccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PrintDialogAccess.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToExtents" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToExtents.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\down_over.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3DBevelPictureTopGallery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\_3DBevelPictureTopGallery.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="free" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\free.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AutoSum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AutoSum.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\down_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BaseLayer" xml:space="preserve">
+    <value>基础图层</value>
+  </data>
+  <data name="ChartInsert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChartInsert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PIE_DIAGRAM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PIE DIAGRAM.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xypoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xypoint.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bollon_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bollon_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChartTypeAreaInsertGallery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ChartTypeAreaInsertGallery.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right_over.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\down_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bollon_select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bollon_select.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MailMergeGoToFirstRecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MailMergeGoToFirstRecord.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultObjectName" xml:space="preserve">
+    <value>未定义</value>
+    <comment>默认元素名称</comment>
+  </data>
+  <data name="up_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up_over.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OtherLayer" xml:space="preserve">
+    <value>其他图层</value>
+  </data>
+  <data name="GroupViews" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GroupViews.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExportExcel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExportExcel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomFitToWindow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomFitToWindow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resources" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\resources.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MotionPointLayer" xml:space="preserve">
+    <value>税务级别图层</value>
+  </data>
+  <data name="OutlineDemote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OutlineDemote.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomin_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomin_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\globe.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blank.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3DEffectColorPickerClassic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\_3DEffectColorPickerClassic.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MailMergeGoToNextRecord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MailMergeGoToNextRecord.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddTableHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddTableHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FilePrintPreview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FilePrintPreview.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FindRelatedMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FindRelatedMenu.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DataLayer" xml:space="preserve">
+    <value>数据图层</value>
+  </data>
+  <data name="query" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\query.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bar1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BorderMoreColorsDialog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BorderMoreColorsDialog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Camera.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="point" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\point.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReviewShareWorkbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ReviewShareWorkbook.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ActiveXImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ActiveXImage.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToSelection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToSelection.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circle1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TextStylesGallery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TextStylesGallery.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GroupMacroTools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GroupMacroTools.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomout_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomout_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditTableHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EditTableHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlogOpenExisting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlogOpenExisting.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CalendarInsert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CalendarInsert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3DLightingGalleryClassic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\_3DLightingGalleryClassic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom_old" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_old.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MailMergeCreateList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MailMergeCreateList.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="area_zoom_select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\area_zoom_select.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomDialog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomDialog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bar4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bar4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FooterInsertGallery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FooterInsertGallery.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FindDialog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FindDialog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReviewShareWorkbookNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ReviewShareWorkbookNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="登录1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\登录1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Home" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Home.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clear.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clear1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clear.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BlogPublish" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlogPublish.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tip" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="医院" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\医院.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="政府" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\政府.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_full.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomout_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomout_over.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bar3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bar3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bollon_normal1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bollon_normal1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="waiting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\waiting.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PickUpStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PickUpStyle.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FileNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FileNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_select.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FileOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FileOpen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlagSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlagSelect.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomout_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomout_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EquationFractionGallery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EquationFractionGallery.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3DEffectsOnOffClassic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\_3DEffectsOnOffClassic.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up_normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Zoom Out.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GroupMasterClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GroupMasterClose.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RelationshipsReport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationshipsReport.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotSaveTipMessage" xml:space="preserve">
+    <value>需要将新建的图层保存到数据库中吗？如果不保存到数据库中，那么在该图层上的修改和增加的元素都将不被保存到数据库中。</value>
+    <comment>新建图层时的提示信息</comment>
+  </data>
+  <data name="GroupMasterClose1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GroupMasterClose1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bollon_select2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bollon_select2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImportMoreMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImportMoreMenu.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="登录3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\登录2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

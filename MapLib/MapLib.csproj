@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B36D154A-45DC-4F3F-A002-2A30DCF20783}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MapLib</RootNamespace>
+    <AssemblyName>MapLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\OutPut\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\OutPut\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BruTile, Version=0.5.1.0, Culture=neutral, PublicKeyToken=00e75fd79e391f40, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\BruTile.dll</HintPath>
+    </Reference>
+    <Reference Include="gdal_csharp, Version=1.0.3671.21225, Culture=neutral, PublicKeyToken=db5a52b08dc5b321">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\gdal_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\GeoAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="netchartdir_cp, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\netchartdir_cp.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite, Version=1.7.3.30582, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\NetTopologySuite.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.11.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="ogr_csharp, Version=1.0.3671.21225, Culture=neutral, PublicKeyToken=db5a52b08dc5b321">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ogr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.102.2.10, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="osr_csharp, Version=1.0.3671.21224, Culture=neutral, PublicKeyToken=db5a52b08dc5b321">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\osr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PostgreSql.Data.PostgreSqlClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67eb7b24561f0df3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\PostgreSql.Data.PostgreSqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjNET, Version=1.2.3882.19088, Culture=neutral, PublicKeyToken=a1f5bdcd9c6f5740, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ProjNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\WellKnownBinary\GeometryFromWKB.cs" />
+    <Compile Include="Converters\WellKnownBinary\GeometryToWKB.cs" />
+    <Compile Include="Converters\WellKnownBinary\WKBByteOrder.cs" />
+    <Compile Include="Converters\WellKnownBinary\WKBGeometryType.cs" />
+    <Compile Include="Converters\WellKnownText\GeometryFromWKT.cs" />
+    <Compile Include="Converters\WellKnownText\GeometryToWKT.cs" />
+    <Compile Include="Converters\WellKnownText\SpatialReference.cs" />
+    <Compile Include="Converters\WellKnownText\StreamTokenizer.cs" />
+    <Compile Include="Converters\WellKnownText\TokenType.cs" />
+    <Compile Include="Converters\WellKnownText\WKTStreamTokenizer.cs" />
+    <Compile Include="CoordinateSystems\Transformations\GeometryTransform.cs" />
+    <Compile Include="Data\FeatureDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\PropertyData.cs" />
+    <Compile Include="Data\Providers\DbaseReader.cs" />
+    <Compile Include="Data\Providers\FilterProvider.cs" />
+    <Compile Include="Data\Providers\GeometryFeatureProvider.cs" />
+    <Compile Include="Data\Providers\GeometryProvider.cs" />
+    <Compile Include="Data\Providers\iProvider.cs" />
+    <Compile Include="Data\Providers\ShapeFile.cs" />
+    <Compile Include="Geometries\BoundingBox.cs" />
+    <Compile Include="Geometries\Curve.cs" />
+    <Compile Include="Geometries\Geometry.cs" />
+    <Compile Include="Geometries\GeometryCollection.cs" />
+    <Compile Include="Geometries\GeometryType.cs" />
+    <Compile Include="Geometries\IGeometry.cs" />
+    <Compile Include="Geometries\IGeometryCollection.cs" />
+    <Compile Include="Geometries\IPuntal.cs" />
+    <Compile Include="Geometries\ISpatialReference.cs" />
+    <Compile Include="Geometries\LinearRing.cs" />
+    <Compile Include="Geometries\LineString.cs" />
+    <Compile Include="Geometries\MultiCurve.cs" />
+    <Compile Include="Geometries\MultiLineString.cs" />
+    <Compile Include="Geometries\MultiPoint.cs" />
+    <Compile Include="Geometries\MultiPolygon.cs" />
+    <Compile Include="Geometries\MultiSurface.cs" />
+    <Compile Include="Geometries\Point.cs" />
+    <Compile Include="Geometries\Point3D.cs" />
+    <Compile Include="Geometries\Polygon.cs" />
+    <Compile Include="Geometries\SpatialRelations.cs" />
+    <Compile Include="Geometries\Surface.cs" />
+    <Compile Include="Layers\DuplicateLayerException.cs" />
+    <Compile Include="Layers\IAsyncLayer.cs" />
+    <Compile Include="Layers\ICanQueryLayer.cs" />
+    <Compile Include="Layers\ILayer.cs" />
+    <Compile Include="Layers\Layer.cs" />
+    <Compile Include="Layers\LayerCollection.cs" />
+    <Compile Include="Layers\TileLayer.cs" />
+    <Compile Include="Layers\VariableLayerCollection.cs" />
+    <Compile Include="Layers\VectorLayer.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\Decoration\IMapDecoration.cs" />
+    <Compile Include="Rendering\Decoration\MapDecoration.cs" />
+    <Compile Include="Rendering\Decoration\MapDecorationAnchor.cs" />
+    <Compile Include="Rendering\Decoration\MapDecorationAnchorFlags.cs" />
+    <Compile Include="Rendering\RenderExceptions.cs" />
+    <Compile Include="Rendering\Symbolizer\BasicLineSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\BasicPolygonSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\CharacterPointSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\CohenSutherlandLineClipping.cs" />
+    <Compile Include="Rendering\Symbolizer\GeometrySymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\ILineSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\IPointSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\IPolygonSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\ISymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\LineSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\ListPointSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\PathPointSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\PointSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\PolygonSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\RasterPointSymbolizer.cs" />
+    <Compile Include="Rendering\Symbolizer\Utility.cs" />
+    <Compile Include="Rendering\Thematics\ColorBlend.cs" />
+    <Compile Include="Rendering\Thematics\CustomTheme.cs" />
+    <Compile Include="Rendering\Thematics\GradientTheme.cs" />
+    <Compile Include="Rendering\Thematics\ITheme.cs" />
+    <Compile Include="Rendering\VectorRenderer.cs" />
+    <Compile Include="Styles\IStyle.cs" />
+    <Compile Include="Styles\LabelStyle.cs" />
+    <Compile Include="Styles\Style.cs" />
+    <Compile Include="Styles\VectorStyle.cs" />
+    <Compile Include="Utilities\CGAlgoritm.cs" />
+    <Compile Include="Utilities\GpcWrapper.cs" />
+    <Compile Include="Utilities\Indexing\BinaryTree.cs" />
+    <Compile Include="Utilities\Indexing\SpatialIndexing.cs" />
+    <Compile Include="Utilities\Transform.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Styles\DefaultSymbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utilities\GeometryUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gpc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="esriDisplay">
+      <Guid>{59FCCD31-434C-4017-BDEF-DB4B7EDC9CE0}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriGeoDatabase">
+      <Guid>{0475BDB1-E5B2-4CA2-9127-B4B1683E70C2}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriGeometry">
+      <Guid>{C4B094C2-FF32-4FA1-ABCB-7820F8D6FB68}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriServer">
+      <Guid>{18F2FC71-6B30-45B9-B101-037A8B868B66}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriSystem">
+      <Guid>{5E1F7BC3-67C5-4AEE-8EC6-C4B73AAC42ED}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriSystemUI">
+      <Guid>{4ECCA6E2-B16B-4ACA-BD17-E74CAE4C150A}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

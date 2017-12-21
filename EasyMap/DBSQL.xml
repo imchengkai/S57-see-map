@@ -1,0 +1,3624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <appSettings>
+    <ConnectString value="Data Source=localhost;Initial Catalog=EasyMap_boat;Persist Security Info=True;User ID=sa;Password=1;"/>
+
+    <BackUpDatabase value="BACKUP DATABASE [@DATABASE] TO  DISK = N'@FILENAME'"/>
+    <RestoreDatabase value="RESTORE DATABASE [@DATABASE] FROM  DISK = N'@FILENAME' WITH  FILE = 1,  NOUNLOAD,  REPLACE"/>
+    <GetMapList value="select * from t_map"/>
+    <GetTempMapList value="select * from t_map"/>
+    <GetMaxMapID value="select isnull(MAX(mapid),0)+1 from t_no"/>
+    <GetMapInfo value="select mapname,comment from t_map where MapId=@MapId"/>
+    <UpdateMaxMapId value="insert into t_no values
+      (
+      @MapId,0,0
+      )"/>
+    <GetMaxLayerId value="select isnull(MAX(layerid),0)+1
+      from t_no
+      where MapId=@MapId"/>
+    <GetLayerId value="select layerid
+      from t_layer
+      where MapId=@MapId
+      and LayerName = @LayerName"/>
+    <UpdateMaxLayerId value="update t_no
+      set LayerId=@LayerId
+      where MapId=@MapId"/>
+    <InsertLayerId value="insert into t_no values(@MapId,@LayerId,0)"/>
+    <GetMaxObjectId value="select isnull(MAX(ObjectId),0)+1
+      from t_object
+      where MapId=@MapId
+      and LayerId=@LayerId"/>
+    <UpdateMaxObjectId value="update t_no
+      set ObjectId=@ObjectId
+      where MapId=@MapId
+      and LayerId=@LayerId"/>
+    <BackupMap value="BackupMap @MapId"/>
+    <RestoreMap value="RestoreMap @MapId"/>
+    <DeleteMap value="Delete t_map where MapId = @MapId"/>
+    <DeleteTempMap value="DeleteTempMap @MapId"/>
+    <InsertTempMap value="insert into t_map
+      values(
+      @MapId,
+      @MapName,
+      @MapComment,
+      -1
+      )"/>
+    <InsertTempLayer value="insert into t_layer
+      values(
+      @MapId,
+      @LayerId,
+      @LayerName,
+      @LayerSort,
+      @LayerType,
+      @Outline,
+      @Fill,
+      @Line,
+      @EnableOutline,
+      @OutlineWidth,
+      @LineWidth,
+      NULL,
+      0,
+      0,
+      -1,
+      @TextColor,
+      @TextFont,
+      0
+      )"/>
+    <DeleteTempLayer value="delete t_layer
+      where MapId like @MapId
+      and LayerId like @LayerId"/>
+    <DeleteLayerNo value="delete t_no
+      where MapId = @MapId
+      and LayerId = @LayerId"/>
+    <DeleteTempObjectByLayerId value="delete t_object
+      where MapId = @MapId
+      and LayerId = @LayerId"/>
+    <DeleteTempSalePriceByLayerId value="delete t_saleprice
+      where MapId = @MapId
+      and LayerId = @LayerId"/>
+    <UpdateTempLayerSort value="update t_layer
+      set LayerSort=@LayerSort
+      where MapId=@MapId
+      and LayerId=@LayerId"/>
+    <UpdateTempLayer value="update t_layer
+      set LayerName=@LayerName,
+      LayerSort=@LayerSort,
+      LayerType=@LayerType,
+      Outline=@Outline,
+      Fill=@Fill,
+      Line=@Line,
+      EnableOutline=@EnableOutline,
+      OutlineWidth=@OutlineWidth,
+      LineWidth=@LineWidth,
+      hatchbrush=@HatchStyle,
+      TextColor=@TextColor,
+      TextFont=@TextFont,
+      Penstyle=@Penstyle
+      where MapId=@MapId
+      and LayerId=@LayerId"/>
+    <UpdateTempLayerType value="update t_layerType
+      set 
+      LayerSort=@LayerSort,
+      LayerType=@LayerType,
+      Outline=@Outline,
+      Fill=@Fill,
+      Line=@Line,
+      EnableOutline=@EnableOutline,
+      OutlineWidth=@OutlineWidth,
+      LineWidth=@LineWidth,
+      hatchbrush=@HatchStyle,
+      TextColor=@TextColor,
+      TextFont=@TextFont,
+      Penstyle=@Penstyle
+      where no = @no"/>
+    <SelectLayerType value="SELECT [no]
+      ,[LayerTypeName]
+      ,[LayerSort]
+      ,[LayerType]
+      ,[Outline]
+      ,[Fill]
+      ,[Line]
+      ,[EnableOutline]
+      ,[OutlineWidth]
+      ,[LineWidth]
+      ,[Dbf]
+      ,[MaxVisible]
+      ,[MinVisible]
+      ,[hatchbrush]
+      ,[TextColor]
+      ,[TextFont]
+      ,[Penstyle]
+  FROM [t_layerType]
+      where no = @no"/>
+    <SelectTempMap value="select * from t_map
+      where MapId=@MapId"/>
+    <UpdateTempMap value="update t_map set MapName=@MapName where MapId=@MapId"/>
+    <SelectTempLayer value="select * from t_layer
+      where MapId=@MapId
+      and LayerId&gt;0
+      order by LayerSort"/>
+    <SelectTempLayerById value="select * from t_layer
+      where MapId=@MapId
+      and LayerId=@LayerId
+      order by LayerSort"/>
+    <InsertTempObject value="insert into t_object
+      (
+        MapId,
+        LayerId,
+        ObjectId,
+        ObjectData,
+        UpdateDate,
+        CreateDate,
+        Name
+      )
+      values(
+      @MapId,
+      @LayerId,
+      @ObjectId,
+      @ObjectData,
+      CONVERT(VARCHAR,GETDATE(),20),
+      CONVERT(VARCHAR,GETDATE(),20),
+      @Name
+      )"/>
+    <DeleteTempObjectById value="delete t_object
+      where MapId = @MapId
+      and LayerId = @LayerId
+      and ObjectId = @ObjectId"/>
+    <UpdateTempObject value="update t_object
+      set ObjectData=@ObjectData,
+      UpdateDate=CONVERT(VARCHAR,GETDATE(),20),
+      Name=@Name
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId"/>
+    <!--<SelectTempObject value="select * from t_object
+      where MapId=@MapId
+      and LayerId=@LayerId
+      "/>-->
+    <SelectTempObject value="SELECT [MapId]
+      ,[LayerId]
+      ,[ObjectId]
+      ,[ObjectData]
+      ,[UpdateDate]
+      ,[CreateDate]
+      ,[Name]
+  FROM [t_object] t1
+  where not exists( select name from [t_object] t2 where t1.Name = t2.Name and t2.ObjectId>t1.ObjectId and LayerId=@LayerId) 
+  and MapId=@MapId
+      and LayerId=@LayerId
+      "/>
+    <SelectTempObjectById value="select * from t_object
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      "/>
+    <InsertTempProperty value="insert into @table
+      values(
+      @MapId,
+      @LayerId,
+      @ObjectId,
+      @PropertyDate,
+      @PropertyType,
+      @PropertyName,
+      @PropertyData,
+      @No
+      )"/>
+    <DeleteTempProperty value="delete @table
+      where MapId = @MapId
+      and LayerId = @LayerId
+      and ObjectId = @ObjectId
+      and PropertyDate like @PropertyDate
+      and UpdateDate like @UpdateDate"/>
+    <SelectTempPropertyDate value="select propertydate
+      from @table
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId"/>
+    <SelectTempProperty value="SELECT *
+      FROM @table
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      and propertydate=@propertydate
+      "/>
+    <SelectTempSalePrice value="select * from t_saleprice
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      and SaleDate&gt;=@SaleDateMin
+      and SaleDate&lt;=@SaleDateMax
+      order by No"/>
+    <DeleteTempSalePrice value="delete t_saleprice
+      where MapId = @MapId
+      and LayerId = @LayerId
+      and ObjectId = @ObjectId
+      and SaleDate like @SaleDate
+      and UpdateDate like @UpdateDate"/>
+    <InsertTempSalePrice value="insert into t_saleprice
+      values(
+      @MapId,
+      @LayerId,
+      @ObjectId,
+      @SaleDate,
+      @SalePrice,
+      @Price,
+      @No,
+      CONVERT(VARCHAR,GETDATE(),20),
+      CONVERT(VARCHAR,GETDATE(),20))"/>
+    <UpdatePictureNo value="update t_picture set No=No-1 where MapId=@MapId and LayerId=@LayerId and ObjectId=@ObjectId and No&gt;@No"/>
+    <UpdatePictureComment value="update t_picture set Comment=@Comment where MapId=@MapId and LayerId=@LayerId and ObjectId=@ObjectId and No=@No"/>
+    <SelectTempPictureDate value="select distinct PictureDate
+      from t_picture
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId"/>
+    <SelectTempPicture value="select PictureData,Comment
+      from t_picture
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      and PictureDate=@PictureDate"/>
+    <SelectTempPictures value="select PictureData
+      from t_picture
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      order by PictureDate desc,No"/>
+    <DeleteTempPicure value="delete t_picture
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      and PictureDate=@PictureDate
+      and No=@No"/>
+    <DeleteTempPicures value="delete t_picture
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      and PictureDate=@PictureDate"/>
+    <InsertTempPicure value="insert into t_picture
+      values(
+      @MapId,
+      @LayerId,
+      @ObjectId,
+      @PictureDate,
+      @No,
+      @PictureData,
+      CONVERT(VARCHAR,GETDATE(),20),
+      CONVERT(VARCHAR,GETDATE(),20),
+      @Comment)"/>
+    <DeletePropertyDefine value="delete t_property_define where PropertyType=@PropertyType"/>
+    <InsertPropertyDefine value="insert into t_property_define
+      values(
+      @Id,
+      @PropertyType,
+      @PropertyName,
+      @DataType,
+      @AllowUnSelect,
+      @AllowInput,
+      @List,
+      @AllowVisible)"/>
+    <SelectPropertyDefine value="select * from t_property_define where PropertyType=@PropertyType order by Id"/>
+    <!--报表用SQL-->
+    <SelectTempSalePriceReport value="select
+      saledate as 出售日期
+      ,saleprice as 总价
+      ,price as 每平米单价
+      from t_saleprice
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId=@ObjectId
+      and SaleDate&gt;=@SaleDateMin
+      and SaleDate&lt;=@SaleDateMax
+      order by saledate"/>
+    <SelectTifSettings value="select
+      LayerName,FileName from t_pic_layer_settings
+      where ComputerId=@ComputerId
+      and MapId=@MapId
+      order by LayerName"/>
+    <DeleteTifSettings value="delete t_pic_layer_settings
+      where ComputerId=@ComputerId and MapId=@MapId and LayerName like @LayerName and FileName like @FileName"/>
+    <SelectTifSettings value="select ComputerId ,MapId
+      ,LayerName
+      ,FileName from t_pic_layer_settings
+      where ComputerId=@ComputerId and MapId=@MapId and LayerName = @LayerName and FileName = @FileName"/>
+    <InsertTifSettings value="insert into t_pic_layer_settings values(
+      @ComputerId
+      ,@MapId
+      ,@LayerName
+      ,@FileName)"/>
+    <GetMapInfo value="select mapname,comment from t_map where MapId=@MapId"/>
+    <GetTempMapList value="select * from t_map"/>
+    <GetMapList value="select * from t_map"/>
+    <SelectTifList value="select
+      PhotoId
+      ,Name
+      ,FileName
+      ,MinX
+      ,MinY
+      ,MaxX
+      ,MaxY
+      ,Transform1
+      ,Transform2
+      ,Transform3
+      ,Transform4
+      ,Transform5
+      ,Transform6
+      ,Width
+      ,Height
+      from t_photo"/>
+    <SelectTifParentChild value="select ParentName,ChildName from t_photo_child"/>
+    <SelectTifByName value="select PhotoId from t_photo where name=@name"/>
+    <SelectMaxTifId value="select isnull(max(photoid)+1,1) from t_photo"/>
+    <InsertTif value="insert into t_photo values(@PhotoId,@Name,@FileName,@MinX,@MinY,@MaxX,@MaxY,@Transform1,@Transform2,@Transform3,@Transform4,@Transform5,@Transform6,@Width,@Height)"/>
+    <InsertPhotoChild value="insert into t_photo_child values(@ParentName,@ChildName)"/>
+    <DeletePhotoChildAll value="delete t_photo_child"/>
+    <DeleteLayerTypeChildAll value="delete t_layerTypeChild"/>
+    <SelectTif value="select t1.*
+      from t_photo t1,t_map t2
+      where t1.PhotoId=t2.PhotoId
+      and t2.MapId=@MapId"/>
+    <SelectLayer value="select 
+                 case layerType when 0 then '基础图层'
+                 when 4 then '数据图层'
+                 else '' end ParentName
+                 ,t1.*
+      from t_layer t1
+     left join  t_layerTypeChild t on t.LayerId = t1.LayerId
+	  where (layerType = 0 or layerType = 4) and t.LayerId is null 
+    and t1.MapId=@MapId"/>
+    <SelectChildList value="select t2.ParentName, t1.PhotoId,t1.Name,t1.FileName from t_photo t1, t_photo_child t2 where t1.name=t2.childname"/>
+    <SelectCenterTif value="select * from t_photo where MinX&lt;@CenterX and MinY&lt;@CenterY and MaxX&gt;@CenterX and MaxY&gt;@CenterY"/>
+    <CheckAreaExit value="select * from t_photo where name=@ChildName"/>
+    <UpdateLayerVisibleZoom value="update t_layer set MaxVisible=@MaxVisible,MinVisible=@MinVisible where MapId=@MapId and LayerId=@LayerId"/>
+    <SelectProjectAreaByObjectId value="select * from t_project_area where 项目ID=@项目ID and MapId=@MapId and LayerId=@LayerId and ObjectId=@ObjectId"/>
+    <SelectProjectAreaById value="select * from t_project_area where 项目ID=@项目ID and MapId=@MapId"/>
+    <SelectTableControl value="select * from t_table_control"/>
+    <SelectColumnControl value="select * from t_column_control where tablename=@tablename order by ordernum"/>
+    <InsertColumnDefault value="insert into t_column_control select t1.name,t2.name,'1',t2.name,t2.column_id
+      from sys.tables t1,sys.columns t2
+      where t1.object_id=t2.object_id
+      and t1.name=@tablename order by t2.column_id"/>
+    <UpdateColumnControl value="update t_column_control set visible=@visible,comment=@comment where tablename=@tablename and columnname=@columnname"/>
+    <SelectProjectByObject value="select t1.项目名称,t1.项目ID,t1.项目年度 from t_project t1,t_project_area t2 where t1.项目ID=t2.项目ID and t2.MapId=@MapId and t2.LayerId=@LayerId and t2.ObjectId=@ObjectId and t1.MapId=t2.MapId"/>
+    <SelectMaxMinProjectYear value="select min(t1.项目年度) as MinYear,max(t1.项目年度) as MaxYear from t_project t1,t_project_area t2 where t1.项目ID=t2.项目ID and t2.MapId=@MapId and t2.LayerId=@LayerId and t2.ObjectId=@ObjectId  and t1.MapId=t2.MapId"/>
+    <SelectProjectAreaPrice value="select
+      t2.估价基准日
+      ,t1.综合地价楼面地价
+      ,t1.综合地价单位地价
+      ,t1.综合地价地价总额
+      ,t1.法人财产楼面地价
+      ,t1.法人财产单位地价
+      ,t1.法人财产地价总额
+      ,t1.剩余法人财产楼面地价
+      ,t1.剩余法人财产单位地价
+      ,t1.剩余法人财产地价总额
+      ,t1.使用权价格楼面地价
+      ,t1.使用权价格单位地价
+      ,t1.使用权价格地价总额
+      from t_project_area t1,t_project t2
+      where t1.MapId=@MapId
+      and t1.LayerId=@LayerId
+      and t1.ObjectId=@ObjectId
+      and t1.MapId=t2.MapId
+      and t1.项目ID=t2.项目ID
+      and t2.项目年度 &gt;= @StartYear
+      and t2.项目年度 &lt;= @EndYear
+      order by t2.估价基准日"/>
+    <SelectAreaPrice value="select t.ObjectId,isnull(t.@Price,0)
+      from t_project_area t inner join
+      (
+      select t1.项目ID,t1.MapId,t1.LayerId,t1.ObjectId,MAX(t2.项目年度) as 项目年度
+      from t_project_area t1,t_project t2
+      where t1.MapId=@MapId
+      and t1.项目ID=t2.项目ID
+      and t1.MapId=t2.MapId
+      group by t1.项目ID,t1.MapId,t1.LayerId,t1.ObjectId
+      ) tt
+      on t.项目ID=tt.项目ID
+      and t.MapId=tt.MapId
+      and t.LayerId=tt.LayerId
+      and t.ObjectId=tt.ObjectId"/>
+    <SelectReportName value="select Id,ReportName from t_report order by Id"/>
+    <SelectReport value="select Sql,ReportName,XColumn from t_report where Id=@Id"/>
+    <SelectReportParameter value="select Parameter,ParameterName,ParameterType from t_report_parameter where Id=@Id order by ParameterId"/>
+    <SelectMaxReportId value="Select isnull(Max(Id),0)+1 from t_report"/>
+    <InsertReport value="insert into t_report values(@Id,@ReportName,@Sql,@XColumn)"/>
+    <InsertReportParameter value="insert into t_report_parameter values(@Id,@ParameterId,@Parameter,@ParameterName,@ParameterType)"/>
+    <DeleteReportParameter value="delete t_report_parameter where Id=@Id"/>
+    <DeleteReport value="delete t_report where Id=@Id"/>
+    <SelectColumnNameWithoutKey value="select t2.column_id
+        ,t2.name
+        ,@tablename
+        ,t2.system_type_id as type
+        from sys.all_objects t1
+        ,sys.all_columns t2
+        where t1.object_id=t2.object_id
+        and t1.name=@tablename
+        and t2.column_id not in
+        (
+        select t4.colid
+        from sys.tables t3
+        ,sys.sysindexkeys t4
+        where t3.object_id=t4.id
+        and t3.name=@tablename
+        )
+        order by 3,1"/>
+    <InsertValue value="insert into t_value values(@id,@value)"/>
+    <UpdateValue value="update t_value set value=@value where id=@id and value=@oldvalue"/>
+    <SelectValue value="select value from t_value where id=@id order by value"/>
+    <UpdateObjectText value="update t_object set name=@name where mapid=@mapid and layerid=@layerid and objectid=@objectid"/>
+    <DeleteTaxLevel value="delete t_tax_level"/>
+    <SaveTaxLevel value="insert into t_tax_level(level_name,tax_rate)
+      values(@level_name,@tax_rate)"/>
+    <CheckTaxLevel value="select * from t_tax_level where level_name=@level_name"/>
+    <SelectTuDiZheng value="select t1.*,case when t1.YiJiaoShui='1' then '已缴' else '未缴' end as YiJiaoShuiStatus,t2.name as geom_name from t_tudizheng t1 left join t_object t2 on t1.map_id=t2.mapid and t1.layer_id=t2.layerid and t1.geom_id=t2.objectid where 
+      t1.bianhao like @bianhao
+      and t1.quanshu like @quanshu
+      and t1.dihao like @dihao
+      and t1.tuhao like @tuhao
+      and t1.dilei like @dilei
+      and t1.shiyongquan_leixing like @shiyongquan_leixing
+      and t1.shiyongquanren like @shiyongquanren
+      and t1.zuoluo like @zuoluo
+      and t1.beizhu like @beizhu
+      and t1.mianshui like @mianshui
+      and t1.nashuiren_shibiehao like @nashuiren_shibiehao
+      and isnull(t1.YiJiaoShui,'0') like @YiJiaoShui"/>
+    <SelectTuDiZhengByDihao value="select t1.*,case when t1.YiJiaoShui='1' then '已缴' else '未缴' end as YiJiaoShuiStatus,t2.name as geom_name from t_tudizheng t1 left join t_object t2 on t1.map_id=t2.mapid and t1.layer_id=t2.layerid and t1.geom_id=t2.objectid where 
+      t1.layer_id = @layerId
+      and t1.dihao = @dihao"/>
+    <SelectShuiWuByDihao value="SELECT [土地证号],[宗地号(土地证)]
+      ,[地号]
+      ,[使用权人]
+      ,[地类]
+      ,[坐落(土地证)]
+      ,[土地性质]
+      ,[使用权类型]
+      ,[使用权面积]
+      ,[纳税人识别号]
+      ,[纳税人名称]
+      ,[土地等级]
+      ,[土地取得时间]
+      ,[管理科所]
+      ,[税收管理员]
+      ,[取得土地使用支付价款]
+      ,[土地面积(核实)]
+      ,[应税面积]
+      ,[减免面积]
+      ,[适用税额]
+      ,[年应税面积]
+      ,[详细地址(税务)]
+      ,[土地取得方式]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[信息来源]
+      ,[数据是否一致]
+      ,[备注]
+      ,[no]
+      ,[userName]
+      ,[updateTime]
+      ,[税务宗地编号]
+      ,[税务宗地名称]
+      ,[宗地号]
+      ,[税务土地性质]
+      ,[土地用途]
+      ,[土地总价]
+      ,[其中土地开发成本]
+      ,case 初始取得时间  when  '1900-01-01' then null
+      else 初始取得时间
+      end 初始取得时间
+      ,case 土地使用权终止时间 when '1900-01-01' then null
+      else 土地使用权终止时间
+      end 土地使用权终止时间
+      ,[减免税依据]
+      ,[减免税金额]
+      ,[应纳税额]
+      ,[计税月份数]
+  FROM t_checked_Data
+  where layer_id = @layerId and 
+       [地号] = @dihao"/>
+    <SelectShuiWuByNoForCheck value="SELECT * FROM t_checked_Data where no = @no"/>
+    <SelectCheckNewByNo value="SELECT * FROM t_checked_Data_New where no = @no"/>
+    <SelectShuiWuNewByNoForCheck value="SELECT * FROM t_checked_Data_New where 税务No = @no"/>
+    <SelectShuiWuByNo value="SELECT [土地证号]
+      ,[地号]
+      ,[使用权人]
+      ,[地类]
+      ,[坐落(土地证)]
+      ,[土地性质]
+      ,[使用权类型]
+      ,[使用权面积]
+      ,[纳税人识别号]
+      ,[纳税人名称]
+      ,[使用权人] as [纳税人名称(土地证)]
+      ,[土地等级]
+      ,[土地取得时间]
+      ,[管理科所]
+      ,[税收管理员]
+      ,[取得土地使用支付价款]
+      ,[土地面积(核实)]
+      ,[应税面积]
+      ,[减免面积]
+      ,[适用税额]
+      ,[年应税面积]
+      ,[详细地址(税务)]
+      ,[土地取得方式]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[信息来源]
+      ,[数据是否一致]
+      ,[备注]
+      ,[no]
+      ,[税务宗地编号]
+      ,[税务宗地名称]
+      ,[宗地号]
+      ,[税务土地性质]
+      ,[土地用途]
+      ,[土地总价]
+      ,[其中土地开发成本]
+      ,[初始取得时间]
+      ,[土地使用权终止时间]
+      ,[减免税依据]
+      ,[减免税金额]
+      ,[应纳税额]
+      ,[计税月份数]
+  FROM t_checked_Data
+  where no = @no"/>
+    <SelectCheckedDataByLayerId value="select * from t_checked_Data where layer_id = @layerId"/>
+    <SelectCheckedDataNew value="select * from t_checked_Data_New"/>
+    <DeleteCheckedDataNew value="delete  from t_checked_Data_New"/>
+    <UpdateZhengguanflag value="UPDATE t_zhengguan SET flag = ''"/>
+    <UpdateCheckedDataflag value="UPDATE t_checked_Data SET flag = ''"/>
+    <SelectCheckedDataNewAll value="SELECT t.[土地证号] as 土地证号1
+      ,t.[纳税人识别号] as 纳税人识别号1
+      ,t.[纳税人名称] as 纳税人名称1
+      ,t.[土地应税面积] as 土地应税面积1
+      ,t.[应纳税额] as 应纳税额1
+      ,t.[map_id]
+      ,t.[layer_id]
+      ,t.[geom_id]
+      ,t.[新比对结果]
+      ,t.[flag]
+      ,t.[税务No],t.no
+      ,t1.[地号]
+      ,t1.[土地证号]
+      ,t1.[纳税人识别号]
+      ,t1.[纳税人名称]
+      ,t1.应纳税额
+      ,t1.应税面积
+  FROM [t_checked_Data_New] t
+  left join t_checked_Data t1 on t.税务No = t1.no
+  where t.税务No != ''
+  union all 
+  SELECT t.[土地证号] as 土地证号1
+      ,t.[纳税人识别号] as 纳税人识别号1
+      ,t.[纳税人名称] as 纳税人名称1
+      ,t.[土地应税面积] as 土地应税面积1
+      ,t.[应纳税额] as 应纳税额1
+      ,t.[map_id]
+      ,t.[layer_id]
+      ,t.[geom_id]
+      ,t.[新比对结果]
+      ,t.[flag]
+      ,t.[税务No],t.no
+      ,''
+      ,''
+      ,''
+      ,''
+      ,'0'
+      ,''
+  FROM [t_checked_Data_New] t
+  where t.税务No = ''"/>
+    <SelectCheckedDataByJiedao value="SELECT t.[土地证号] as 土地证号1
+      ,t.[纳税人识别号] as 纳税人识别号1
+      ,t.[纳税人名称] as 纳税人名称1
+      ,t.[土地应税面积] as 土地应税面积1
+      ,t.[应纳税额] as 应纳税额1
+      ,t.[map_id]
+      ,t.[layer_id]
+      ,t.[geom_id]
+      ,t.[新比对结果]
+      ,t.[flag]
+      ,t.[税务No],t.no
+      ,t1.[地号]
+      ,t1.[土地证号]
+      ,t1.[纳税人识别号]
+      ,t1.[纳税人名称]
+      ,t1.应纳税额
+      ,t1.应税面积
+      ,t3.Name as 街道
+  FROM [t_checked_Data_New] t
+  left join t_checked_Data t1 on t.税务No = t1.no
+  left join t_parent_child t2 on t2.SubLayerId = t1.layer_id and t2.SubObjectId = t1.geom_id
+  left join t_object t3 on t3.LayerId = t2.LayerId and t3.ObjectId = t2.ObjectId
+  where t.税务No != '' and t2.LayerId ='120'
+  and t3.Name = @jiedaoName"/>
+    <SelectObject value="SELECT [MapId]
+      ,[LayerId]
+      ,[ObjectId]
+      ,[ObjectData]
+      ,[UpdateDate]
+      ,[CreateDate]
+      ,[Name]
+  FROM [t_object]
+  where name =@name"/>
+    <SelectObjectByLayerId value="SELECT [MapId]
+    ,[LayerId]
+    ,[ObjectId]
+    ,[ObjectData]
+    ,[UpdateDate]
+    ,[CreateDate]
+    ,[Name]
+    FROM [t_object]
+    where LayerId=@layerId"/>
+    <SelectZhengguanAll value="select * from t_zhengguan 
+                                where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称  and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                and flag !='0'"/>
+    <SelectZhengguanOtherShuie value="select * from t_zhengguan 
+                                where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称  and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                and flag !='0'"/>
+    <SelectZhengguanOtherArea value="select * from t_zhengguan 
+                                where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称 
+                                and flag !='0'"/>
+    <SelectZhengguanOtherPerson value="select * from t_zhengguan 
+                                where 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                and flag !='0'"/>
+    <SelectZhengguanByArea value="select * from t_zhengguan 
+                                where 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                and flag !='0'"/>
+    <SelectZhengguanOtherName value="select * from t_zhengguan 
+                                where 纳税人识别号 =@纳税人识别号 and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                and flag !='0'"/>
+     <SelectZhengguanByPerson value="select * from t_zhengguan 
+                                where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称
+                                and flag !='0'"/>
+    <UpdateZhengguan value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '0' where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称 
+                                and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2 and flag !='0' and flag !='1'"/>
+    <UpdateZhengguanOtherShuie value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '0' where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称 
+                                 and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2 and flag !='0' and flag !='1'"/>
+    <UpdateZhengguanOtherPerson value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '0' where  and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                  and flag !='0' and flag !='1'"/>
+    <UpdateZhengguanOtherArea value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '0' where 纳税人识别号 =@纳税人识别号 and 纳税人名称 = @纳税人名称 
+                                  and flag !='0' and flag !='1'"/>
+    <UpdateZhengguanOtherName value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '1' where 纳税人识别号 =@纳税人识别号 
+                                  and flag !='0'"/>
+    <UpdateZhengguanOnlyOtherName value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '0' where 纳税人识别号 =@纳税人识别号  and 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2
+                                  and flag !='0' and flag !='1'"/>
+    <UpdateZhengguanByArea value="update t_zhengguan set 新比对结果 =@新比对结果,flag = '0' where 土地应税面积 &gt;= @土地应税面积1 and 土地应税面积 &lt;=@土地应税面积2 
+                                  and flag !='0'and flag !='1'"/>
+    <UpdateShuiwu value="update t_checked_Data set 新比对结果 =@新比对结果,flag = '0' where no = @no"/>
+    <SelectMaxNoFromCheckDataNew value="select max(no) from t_checked_Data_New"/>
+    <InsertCheckDataNew value="INSERT INTO [t_checked_Data_New]
+           (no,[地号]
+           ,[土地证号]
+           ,[纳税人识别号]
+           ,[纳税人名称]
+           ,[土地性质]
+           ,[宗地号]
+           ,[土地取得方式]
+           ,[土地用途]
+           ,[土地等级]
+           ,[税额标准]
+           ,[计税月份数]
+           ,[管理科所]
+           ,[土地面积]
+           ,[减免税面积]
+           ,[减免税金额]
+           ,[土地应税面积]
+           ,[应纳税额]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[新比对结果]
+           ,[flag]
+           ,[税务No])
+     VALUES(@no,@地号
+           ,@土地证号
+           ,@纳税人识别号
+           ,@纳税人名称
+           ,@土地性质
+           ,@宗地号
+           ,@土地取得方式
+           ,@土地用途
+           ,@土地等级
+           ,@税额标准
+           ,@计税月份数
+           ,@管理科所
+           ,@土地面积
+           ,@减免税面积
+           ,@减免税金额
+           ,@土地应税面积
+           ,@应纳税额
+           ,@map_id
+           ,@layer_id
+           ,@geom_id
+           ,@新比对结果
+           ,@flag
+           ,@税务No)"/>
+    <InsertCheckDataNewFromZhengguan value="INSERT INTO [t_checked_Data_New]
+           (no,[地号]
+           ,[土地证号]
+           ,[纳税人识别号]
+           ,[纳税人名称]
+           ,[土地性质]
+           ,[宗地号]
+           ,[土地取得方式]
+           ,[土地用途]
+           ,[土地等级]
+           ,[税额标准]
+           ,[计税月份数]
+           ,[管理科所]
+           ,[土地面积]
+           ,[减免税面积]
+           ,[减免税金额]
+           ,[土地应税面积]
+           ,[应纳税额]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[新比对结果]
+           ,[flag]
+           ,[税务No])
+    select ROW_NUMBER()over(order by 土地证号) +isnull((select max(no) from t_checked_Data_New),0)
+           ,''
+           ,[土地证号]
+           ,[纳税人识别号]
+           ,[纳税人名称]
+           ,[土地性质]
+           ,[宗地号]
+           ,[土地取得方式]
+           ,[土地用途]
+           ,[土地等级]
+           ,[税额标准]
+           ,[计税月份数]
+           ,[管理科所]
+           ,[土地面积]
+           ,[减免税面积]
+           ,[减免税金额]
+           ,[土地应税面积]
+           ,[应纳税额]
+           ,''
+           ,''
+           ,''
+           ,'征管系统多的数据'
+           ,'0'
+           ,'' from t_zhengguan where flag !='0' and flag !='1'"/>
+    <SelectCheckedData value="select t1.* from t_checked_Data t1 where 
+       [土地证号] like @土地证号
+       and [地号] like @地号
+       and [地类] like @地类
+       and [坐落(土地证)] like @坐落
+       and [土地性质] like @土地性质
+       and [使用权类型] like @使用权类型
+       and [使用权人] like @使用权人
+       and [纳税人识别号] like @纳税人识别号
+       and [纳税人名称] like @纳税人名称
+       and [使用权人] like @纳税人名称1
+       and [土地等级] like @土地等级
+       and [土地取得时间] >= @土地取得时间1
+       and [土地取得时间] !> @土地取得时间2
+       and [管理科所] like @管理科所
+       and [税收管理员] like @税收管理员
+       and [详细地址(税务)] like @详细地址
+       and [土地取得方式] like @土地取得方式
+       and [数据是否一致] like @数据是否一致
+       and [layer_id] = @layerId"/>
+    <CheckTuDiZheng value="select t1.* from t_tudizheng t1 where t1.dihao=@dihao"/>
+    <checkEmptyTudi value="select t1.* from t_tudizheng t1 where t1.dihao=@dihao and t1.bianhao =''"/>
+    <CheckTuDiZhengBianhao value="select t1.* from t_tudizheng t1 where t1.bianhao=@bianhao"/>
+    <CheckShuiWu value="select t1.* from t_checked_Data t1 where t1.地号=@dihao"/>
+    <DeleteTuDiZheng value="delete t_tudizheng where dihao=@dihao and bianhao = @bianhao "/>
+    <DeleteTuDiZhengByNo value="delete t_tudizheng where no=@no"/>
+    <DeleteTudiMessage value="delete t_tudizheng where map_id=@MapId and layer_id = @LayerId "/>
+    <DeleteShuiwuMessage value="delete t_checked_Data where map_id=@MapId and layer_id = @LayerId "/>
+    <DeleteShuiWuCheckedData value="delete t_checked_Data where no=@no"/>
+    <UpdateTuDiZheng value="
+      update t_tudizheng set
+      bianhao=@bianhao
+      ,zongdihao=@zongdihao
+      ,quanshu=@quanshu
+      ,dihao=@dihao
+      ,tuhao=@tuhao
+      ,dilei=@dilei
+      ,shiyongquan_leixing=@shiyongquan_leixing
+      ,shiyongquanren=@shiyongquanren
+      ,zuoluo=@zuoluo
+      ,qude_jiage=@qude_jiage
+      ,zhongzhi_riqi=@zhongzhi_riqi
+      ,shiyongquan_mianji=@shiyongquan_mianji
+      ,duyong_mianji=@duyong_mianji
+      ,fentan_mianji=@fentan_mianji
+      ,shiji_mianji=@shiji_mianji
+      ,beizhu=@beizhu
+      ,nashuiren_shibiehao=@nashuiren_shibiehao
+      ,mianshui=@mianshui
+      ,userName =@userName
+      ,updateTime = @updateTime
+      where dihao=@old_dihao
+      and bianhao = @old_bianhao
+      and map_id=@map_id
+      and layer_id=@layer_id
+      and geom_id=@geom_id
+    "/>
+    <UpdateTuDiZhengByNo value="
+      update t_tudizheng set
+      bianhao=@bianhao
+      ,zongdihao=@zongdihao
+      ,quanshu=@quanshu
+      ,dihao=@dihao
+      ,tuhao=@tuhao
+      ,dilei=@dilei
+      ,shiyongquan_leixing=@shiyongquan_leixing
+      ,shiyongquanren=@shiyongquanren
+      ,zuoluo=@zuoluo
+      ,qude_jiage=@qude_jiage
+      ,zhongzhi_riqi=@zhongzhi_riqi
+      ,shiyongquan_mianji=@shiyongquan_mianji
+      ,duyong_mianji=@duyong_mianji
+      ,fentan_mianji=@fentan_mianji
+      ,shiji_mianji=@shiji_mianji
+      ,beizhu=@beizhu
+      ,nashuiren_shibiehao=@nashuiren_shibiehao
+      ,mianshui=@mianshui
+      ,userName =@userName
+      ,updateTime = @updateTime
+      where no =@no
+    "/>
+    <UpdateShuiWuCheckedData value="
+   UPDATE [t_checked_Data]
+   SET [土地证号] = @土地证号
+      ,[宗地号(土地证)] = @土地证宗地号
+      ,[地号] = @地号
+      ,[地类] = @地类
+      ,[坐落(土地证)] =@坐落
+      ,[土地性质] = @土地性质
+      ,[使用权类型] = @使用权类型
+      ,[使用权面积] = @使用权面积
+      ,[纳税人识别号] = @纳税人识别号
+      ,[纳税人名称] = @纳税人名称
+      ,[使用权人] = @使用权人
+      ,[土地等级] = @土地等级
+      ,[土地取得时间] = @土地取得时间
+      ,[管理科所] = @管理科所
+      ,[税收管理员] = @税收管理员
+      ,[取得土地使用支付价款] = @取得土地使用支付价款
+      ,[土地面积(核实)] = @土地面积
+      ,[应税面积] = @应税面积
+      ,[减免面积] = @减免面积
+      ,[适用税额] = @适用税额
+      ,[年应税面积] = @年应税面积
+      ,[详细地址(税务)] = @详细地址
+      ,[土地取得方式] = @土地取得方式
+      ,[数据是否一致] = @数据是否一致
+      ,[备注] = @备注
+      ,[map_id] = @map_id
+      ,[layer_id] = @layer_id
+      ,[geom_id] = @geom_id
+      ,[userName] = @userName
+      ,[updateTime]=@updateTime
+      ,[税务宗地编号] = @税务宗地编号
+      ,[税务宗地名称] = @税务宗地名称
+      ,[宗地号] = @宗地号
+      ,[税务土地性质] = @税务土地性质
+      ,[土地用途] = @土地用途
+      ,[土地总价] = @土地总价
+      ,[其中土地开发成本] = @其中土地开发成本
+      ,[初始取得时间] = @初始取得时间
+      ,[土地使用权终止时间] = @土地使用权终止时间
+      ,[减免税依据] = @减免税依据
+      ,[减免税金额] = @减免税金额
+      ,[应纳税额] = @应纳税额
+      ,[计税月份数] = @计税月份数
+ WHERE [no] = @no
+    "/>
+    <InsertTuDiZheng value="
+      insert t_tudizheng(
+      no,dihao,zongdihao
+      ,bianhao
+      ,map_id
+      ,layer_id
+      ,geom_id
+      ,quanshu
+      ,tuhao
+      ,dilei
+      ,shiyongquan_leixing
+      ,shiyongquanren
+      ,zuoluo
+      ,qude_jiage
+      ,zhongzhi_riqi
+      ,shiyongquan_mianji
+      ,duyong_mianji
+      ,fentan_mianji
+      ,shiji_mianji
+      ,nashuiren_shibiehao
+      ,mianshui
+      ,beizhu
+      ,userName
+      ,updateTime)
+      values(
+      @no,@dihao,@zongdihao
+      ,@bianhao
+      ,@map_id
+      ,@layer_id
+      ,@geom_id
+      ,@quanshu
+      ,@tuhao
+      ,@dilei
+      ,@shiyongquan_leixing
+      ,@shiyongquanren
+      ,@zuoluo
+      ,@qude_jiage
+      ,@zhongzhi_riqi
+      ,@shiyongquan_mianji
+      ,@duyong_mianji
+      ,@fentan_mianji
+      ,@shiji_mianji
+      ,@nashuiren_shibiehao
+      ,@mianshui
+      ,@beizhu
+      ,@userName
+      ,@updateTime) "/>
+    <SelectFangZheng value="
+      select t2.quanshu,t2.dihao,t2.tuhao,t2.dilei,t2.shiyongquan_leixing,t1.* from t_fangzheng t1 left join t_tudizheng t2 on t1.tudizheng_bianhao=t2.bianhao where
+      t1.tudizheng_bianhao like @tudizheng_bianhao
+      and t1.fangwuhao like @fangwuhao
+      and t1.chanbie like @chanbie
+      and t1.jiancheng_diandai like @jiancheng_diandai
+      and t1.jiegou like @jiegou
+      and t1.shejiyongtu like @shejiyongtu
+      and t1.gongyou_qingkuang like @gongyou_qingkuang
+      and t1.beizhu like @beizhu
+      order by t1.tudizheng_bianhao,t1.fangwuhao
+      "/>
+    <CheckFangZheng value="
+      select * from t_fangzheng where
+      tudizheng_bianhao = @tudizheng_bianhao
+      and fangwuhao = @fangwuhao"/>
+    <DeleteFangZheng value="
+      Delete t_fangzheng where
+      tudizheng_bianhao = @tudizheng_bianhao
+      and fangwuhao = @fangwuhao"/>
+    <InsertFangZheng value="
+      insert into t_fangzheng(
+      tudizheng_bianhao
+      ,fangwuhao
+      ,chanbie
+      ,jiancheng_diandai
+      ,jiegou
+      ,shejiyongtu
+      ,jianzhumianji
+      ,taoneimianji
+      ,zongcengshu
+      ,suozai_cengshu
+      ,gongyou_qingkuang
+      ,beizhu)
+      values(
+      @tudizheng_bianhao
+      ,@fangwuhao
+      ,@chanbie
+      ,@jiancheng_diandai
+      ,@jiegou
+      ,@shejiyongtu
+      ,@jianzhumianji
+      ,@taoneimianji
+      ,@zongcengshu
+      ,@suozai_cengshu
+      ,@gongyou_qingkuang
+      ,@beizhu)
+      "/>
+    <UpdateFangZheng value="
+      update t_fangzheng set
+      tudizheng_bianhao = @tudizheng_bianhao,
+      fangwuhao = @fangwuhao,
+      chanbie = @chanbie
+      ,jiancheng_diandai = @jiancheng_diandai
+      ,jiegou = @jiegou
+      ,shejiyongtu = @shejiyongtu
+      ,jianzhumianji = @jianzhumianji
+      ,taoneimianji = @taoneimianji
+      ,zongcengshu = @zongcengshu
+      ,suozai_cengshu = @suozai_cengshu
+      ,gongyou_qingkuang = @gongyou_qingkuang
+      ,beizhu = @beizhu
+      where
+      tudizheng_bianhao = @old_tudizheng_bianhao
+      and fangwuhao = @old_fangwuhao"/>
+    <SelectCombox value="Select c_value from t_combobox where c_key=@c_key order by c_value"/>
+    <InsertCombox value="Insert into t_combobox(c_key,c_value) values(@c_key,@c_value)"/>
+    <GetTuDiZhengId value="select isnull(max(id),0)+1 from t_tudizheng where dihao=@dihao"/>
+    <DeleteGongSi value="update t_gongsi set delete_flag='1' where dihao=@dihao and gongsi_id=@gongsi_id "/>
+    <InsertGongSi value="insert into t_gongsi(dihao,gongsi_id,qiye_mingcheng,faren_daibiao,lianxi_dianhua,lishu_fenju,yingye_zhizhao,delete_flag,comment,nashuiren_shibiehao)
+      values(@dihao,@gongsi_id,@qiye_mingcheng,@faren_daibiao,@lianxi_dianhua,@lishu_fenju,@yingye_zhizhao,'0',@comment,@nashuiren_shibiehao)"/>
+    <UpdateGongSi value="update t_gongsi set
+      dihao=@dihao
+      ,qiye_mingcheng=@qiye_mingcheng
+      ,faren_daibiao=@faren_daibiao
+      ,lianxi_dianhua=@lianxi_dianhua
+      ,lishu_fenju=@lishu_fenju
+      ,nashuiren_shibiehao=@nashuiren_shibiehao
+      ,yingye_zhizhao=@yingye_zhizhao
+      ,comment=@comment
+      where dihao=@old_dihao and gongsi_id=@gongsi_id"/>
+    <GetGongSiId value="select isnull(max(gongsi_id),0)+1 from t_gongsi"/>
+    <SelectGongSi value="select t1.*,t2.bianhao from t_gongsi t1 left join t_tudizheng t2 on t1.dihao=t2.dihao
+      where t1.qiye_mingcheng like @qiye_mingcheng and t1.faren_daibiao like @faren_daibiao and t1.lianxi_dianhua like @lianxi_dianhua
+      and t1.lishu_fenju like @lishu_fenju and t1.comment like @comment and t1.yingye_zhizhao like @yingye_zhizhao and t1.nashuiren_shibiehao like @nashuiren_shibiehao
+      and t1.delete_flag='0'"/>
+    <GetDiHao value="select
+      dihao,bianhao,nashuiren_shibiehao
+      from t_tudizheng
+      order by dihao"/>
+    <UpdateTudizhengNashuirenShibiehao value="update t_tudizheng set nashuiren_shibiehao=@nashuiren_shibiehao where dihao=@dihao"/>
+    <CheckNashuirenTuDiZheng value="select * from t_tudizheng where nashuiren_shibiehao=@nashuiren_shibiehao and dihao=@dihao"/>
+    <SelectGongsiByDihao value="select * from t_gongsi where dihao=@dihao"/>
+    <SelectTuDiZhengByGeomId value="select t1.*,case when t1.YiJiaoShui='1' then '已缴' else '未缴' end as YiJiaoShuiStatus,t2.name as geom_name
+        from t_tudizheng t1 left join t_object t2
+        on t1.map_id=t2.mapid and t1.layer_id=t2.layerid and t1.geom_id=t2.objectid
+        where t1.map_id=@mapid
+        and t1.layer_id=@layerid
+        and t1.geom_id=@geomid"/>
+    <SelectShuiWuByGeomId value="SELECT [土地证号]
+      ,[地号]
+      ,[使用权人]
+      ,[地类]
+      ,[坐落(土地证)]
+      ,[土地性质]
+      ,[使用权类型]
+      ,[使用权面积]
+      ,[纳税人识别号]
+      ,[纳税人名称]
+      ,[使用权人] as [纳税人名称(土地证)]
+      ,[土地等级]
+      ,[土地取得时间]
+      ,[管理科所]
+      ,[税收管理员]
+      ,[取得土地使用支付价款]
+      ,[土地面积(核实)]
+      ,[应税面积]
+      ,[减免面积]
+      ,[适用税额]
+      ,[年应税面积]
+      ,[详细地址(税务)]
+      ,[土地取得方式]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[信息来源]
+      ,[数据是否一致]
+      ,[备注]
+      ,[no]
+  FROM t_checked_Data
+  where map_id = @mapid
+  and layer_id =@layerid
+  and geom_id =@geomid
+  and 地号 = @dihao"/>
+    <!--梅 填 20160524-->
+    <SelectShuiWuByGeomId1 value="SELECT *
+  FROM t_checked_Data
+  where map_id = @mapid
+  and layer_id =@layerid
+  and 地号 = @dihao"/><!-- 梅移除 map_id = @mapid
+  and layer_id =@layerid
+  and geom_id =@geomid
+  and-->
+    
+    <!-- 填个dihao条件-->
+    <DeleteTempData value="delete t_tax_select_geom where mapid=@mapid"/>
+    <InsertTempData value="insert into t_tax_select_geom(Mapid,layerid,objectid,parentlayerid,parentobjectid) values(@mapid,@layerid,@objectid,@parentlayerid,@parentobjectid)"/>
+    <Report02 value="
+      select
+      t1.dihao
+      ,t1.shiyongquan_mianji
+      ,t1.shiyongquanren
+      ,t2.faren_daibiao
+      ,t2.lianxi_dianhua
+      ,t1.bianhao
+      ,t_jiedao_name.Name as jiedao_name
+      ,t1.zuoluo
+      ,t_qujie_name.Name as qujie_name
+      ,t5.Tax_Rate
+      ,isnull((case when t1.shiji_mianji is null or t1.shiji_mianji=0 then t1.shiyongquan_mianji else t1.shiji_mianji end)*
+      (case when t_jibie.area = 0 then 0 else t_jibie.area/t_jibie.totalarea end),0) as area
+      ,t5.Tax_Rate*t1.shiyongquan_mianji*
+      (case when t_jibie.area = 0 then 0 else t_jibie.area/t_jibie.totalarea end) as nashuie
+      ,case t1.mianshui when '1' then '免税' else '应税' end as mianshui
+      ,t1.dilei
+      ,t1.shiyongquan_leixing
+      ,t1.quanshu
+      ,t4.MapId
+      ,t4.LayerId
+      ,t4.ObjectId
+      from t_tax_select_geom t4
+      left join t_parent_child t_jiedao
+      on t4.MapId=t_jiedao.MapId and t4.LayerId=t_jiedao.SubLayerId and t4.ObjectId=t_jiedao.SubObjectId
+      LEFT join t_object t_jiedao_name
+      on t_jiedao.MapId=t_jiedao_name.MapId and t_jiedao.LayerId=t_jiedao_name.LayerId and t_jiedao.ObjectId=t_jiedao_name.ObjectId
+      LEFT join t_parent_child t_qujie
+      on t_jiedao.MapId=t_qujie.MapId and t_jiedao.LayerId=t_qujie.SubLayerId and t_jiedao.ObjectId=t_qujie.SubObjectId
+      LEFT join t_object t_qujie_name
+      on t_qujie.MapId=t_qujie_name.MapId and t_qujie.LayerId=t_qujie_name.LayerId and t_qujie.ObjectId=t_qujie_name.ObjectId
+      LEFT join t_parent_child t_jibie
+      on t4.MapId=t_jibie.MapId and t4.LayerId=t_jibie.SubLayerId and t4.ObjectId=t_jibie.SubObjectId
+      left join t_tudizheng t1
+      on t1.map_id=t4.mapid and t1.layer_id=t4.layerid and t1.geom_id=t4.objectid
+      left join t_gongsi t2
+      on t1.dihao=t2.dihao and t1.nashuiren_shibiehao=t2.nashuiren_shibiehao
+      left join @zongdi_table t_zongdi
+      on t4.mapid=t_zongdi.mapid and t_zongdi.layerid=t4.layerid and t4.ObjectId=t_zongdi.objectid
+      left join @tax_table t_shuiwujibie
+      on t4.mapid=t_shuiwujibie.mapid and t_shuiwujibie.layerid=t_jibie.LayerId and t_jibie.ObjectId=t_shuiwujibie.objectid
+      left join t_tax_level t5
+      on t5.mapid=t1.map_id and t5.level_name=t_shuiwujibie.swjb
+      where t4.mapid=@mapid
+      and t_jiedao.LayerId=@jiedao_layerid
+      and t_qujie.LayerId=@qujie_layerid
+      and t_jibie.LayerId =@jibie_layerid
+      and t_qujie_name.Name is not null
+      and t_qujie_name.Name != ''
+      and t_jiedao.Area > (t_jiedao.TotalArea*0.1)
+      and t_qujie.Area > (t_qujie.TotalArea*0.1)
+      and t_jibie.Area > (t_jibie.TotalArea*0.1)
+      and t1.dihao is not null
+      and t1.dihao != ''
+      order by t1.dihao
+    "/>
+    <Report01 value="select
+      distinct
+      t4.layerid
+      ,t4.objectid
+      ,t1.dihao as name
+      ,t1.bianhao
+      ,isnull(t1.shiyongquan_mianji,0) as shiyongquan_mianji
+      ,isnull(t1.shiji_mianji,0) as shiji_mianji
+      ,t1.shiyongquanren as faren_daibiao
+      ,t2.yingye_zhizhao
+      ,t1.nashuiren_shibiehao
+      ,t6.swjb
+     ,isnull(
+      (case when t7.area = 0 then 0 else
+      (case when t1.shiji_mianji is null or t1.shiji_mianji=0 then t1.shiyongquan_mianji else t1.shiji_mianji end)*t7.area/t7.totalarea end),0) as area
+      ,isnull
+      ((case when t1.shiyongquan_mianji*t5.tax_rate*t7.area = 0 then 0
+      else
+      t1.shiyongquan_mianji*t5.tax_rate*t7.area/t7.totalarea end),0) as shuie
+      ,isnull(
+      (case when t1.shiji_mianji*t5.tax_rate*t7.area = 0 then 0
+      else t1.shiji_mianji*t5.tax_rate*t7.area/t7.totalarea end),0) as shiji_shuie
+      ,t1.zuoluo
+      ,t1.dilei
+      ,t1.quanshu
+      ,t1.shiyongquan_leixing
+      ,case t1.mianshui when '1' then '免税' else '应税' end as mianshui
+      ,t1.beizhu
+      from t_tax_select_geom t4
+      left join t_parent_child t7
+      on t4.mapid=t7.mapid and t4.layerid=t7.sublayerid and t4.objectid=t7.subobjectid and t7.layerid=@tax_layer_id
+      left join t_tudizheng t1
+      on t1.map_id=t4.mapid and t1.layer_id=t4.layerid and t1.geom_id=t4.objectid
+      left join t_gongsi t2
+      on t1.dihao=t2.dihao and t1.nashuiren_shibiehao=t2.nashuiren_shibiehao
+      left join @zongdi_table t3
+      on t4.mapid=t3.mapid and t3.layerid=t4.layerid and t4.ObjectId=t3.objectid
+      left join @tax_table t6
+      on t7.mapid=t6.mapid and t7.layerid=t6.layerid and t7.ObjectId=t6.objectid
+      left join t_tax_level t5
+      on t5.mapid=t1.map_id and t5.level_name=t6.swjb
+      where t4.mapid=@mapid
+      and t1.dihao is not null
+      and t1.dihao !=''
+      order by t4.layerid,t4.objectid"/>
+
+    <Report01new value="select
+      distinct
+      t4.layerid
+      ,t4.objectid
+      ,t1.地号 as name
+      ,t1.土地证号
+      ,t1.税务土地性质
+      ,t1.[土地面积(核实)] AS 宗地面积
+      ,isnull(t1.使用权面积,0) as shiyongquan_mianji
+      ,isnull(t1.应税面积,0) as 土地应税面积
+      ,t1.纳税人名称
+      ,t2.yingye_zhizhao
+      ,t1.纳税人识别号
+      ,t6.swjb
+     ,isnull(
+      (case when t7.area = 0 then 0 else
+      (case when cast(t1.应税面积 as numeric(18, 2)) is null or cast(t1.应税面积 as numeric(18, 2))=0 then cast(t1.使用权面积 as numeric(18, 2)) else cast(t1.应税面积 as numeric(18, 2)) end)*t7.area/t7.totalarea end),0) as area
+      ,isnull
+      ((case when cast(t1.使用权面积 as numeric(18, 2))*t5.tax_rate*t7.area = 0 then 0
+      else
+      cast(t1.使用权面积 as numeric(18, 2))*t5.tax_rate*t7.area/t7.totalarea end),0) as shuie
+      ,isnull(
+      (case when cast(t1.应税面积 as numeric(18, 2))*t5.tax_rate*t7.area = 0 then 0
+      else cast(t1.应税面积 as numeric(18, 2))*t5.tax_rate*t7.area/t7.totalarea end),0) as shiji_shuie
+      ,t1.[详细地址(税务)]
+      ,t1.土地用途
+      ,t1.使用权类型
+      ,t1.备注
+       ,t1.[土地性质]
+      ,t1.[使用权类型]
+      ,t1.[使用权面积]
+      ,t1.[纳税人识别号]
+      ,t1.[纳税人名称]
+      ,t1.[土地等级]
+      ,t1.[土地取得时间]
+      ,t1.[管理科所]
+      ,t1.[税收管理员]
+      ,t1.[取得土地使用支付价款]
+      ,t1.[土地面积(核实)]
+      ,t1.[应税面积]
+      ,t1.[减免面积]
+      ,t1.[适用税额]
+      ,t1.[年应税面积]
+      ,t1.[详细地址(税务)]
+      ,t1.[土地取得方式]
+      ,t1.[map_id]
+      ,t1.[layer_id]
+      ,t1.[geom_id]
+      ,t1.[信息来源]
+      ,t1.[数据是否一致]
+      ,t1.[备注]
+      ,t1.[no]
+      ,t1.[userName]
+      ,t1.[updateTime]
+      ,t1.[税务宗地编号]
+      ,t1.[税务宗地名称]
+      ,t1.[宗地号]
+      ,t1.[税务土地性质]
+      ,t1.[土地用途]
+      ,t1.[土地总价]
+      ,t1.[其中土地开发成本]
+      ,t1.[初始取得时间]
+      ,t1.[土地使用权终止时间]
+      ,t1.[减免税依据]
+      ,t1.[应纳税额]
+      ,t1.[计税月份数]
+      ,t1.[减免税金额]
+      ,t1.[土地应税面积]
+      ,t1.[行政区域]
+      ,t1.[详细地址]
+      ,t1.[出租方纳税识别号]
+      ,t1.[出租方单位或个人名称]
+      ,t1.[联系电话]
+      ,t1.[出租方是否为村委会土地使用权]
+      ,t1.[是否为转租土地使用权]
+      ,t1.[承租土地面积]
+      ,t1.[支付的租金总额]
+      ,t1.[是否同时租赁地上房屋]
+      ,t1.[主管机关]
+      ,t1.[纳税人管理状态]
+      ,t1.[无偿使用单位纳税识别号]
+      ,t1.[无偿使用单位或个人名称]
+      ,t1.[无偿使用人是否缴纳土地使用税]
+      ,t1.[无偿提供他人使用面积]
+      ,t1.[适用税额代码]
+      ,t1.[宗地号(土地证)]
+      ,t1.[新比对结果]
+      ,t1.[flag]
+      from t_tax_select_geom t4
+      left join t_parent_child t7
+      on t4.mapid=t7.mapid and t4.layerid=t7.sublayerid and t4.objectid=t7.subobjectid and t7.layerid=@tax_layer_id
+      left join t_checked_Data t1
+      on t1.map_id=t4.mapid and t1.layer_id=t4.layerid and t1.geom_id=t4.objectid
+      left join t_gongsi t2
+      on t1.地号=t2.dihao and t1.纳税人识别号=t2.nashuiren_shibiehao
+      left join @zongdi_table t3
+      on t4.mapid=t3.mapid and t3.layerid=t4.layerid and t4.ObjectId=t3.objectid
+      left join @tax_table t6
+      on t7.mapid=t6.mapid and t7.layerid=t6.layerid and t7.ObjectId=t6.objectid
+      left join t_tax_level t5
+      on t5.mapid=t1.map_id and t5.level_name=t6.swjb
+      where t4.mapid='69'
+      and t1.地号 is not null
+      and t1.地号 !=''
+	  and t1.geom_id is not null
+      and t1.geom_id !=''
+      order by t4.layerid,t4.objectid"/>
+    <CustomerReport value="select t1.tuhao,
+      t3.layerid
+      ,t3.objectid
+      ,jiedao_name.name as jiedaoname
+      ,qujie_name.name as qujiename
+      ,t1.dihao as name
+      ,t1.bianhao
+      ,isnull(t1.shiyongquan_mianji,0) as shiyongquan_mianji
+      ,isnull(t1.shiji_mianji,0) as shiji_mianji
+      ,t1.shiyongquanren as faren_daibiao
+      ,t2.yingye_zhizhao
+      ,t1.nashuiren_shibiehao
+      ,t6.swjb
+     ,isnull(
+      (case when t7.area = 0 then 0 else
+      (case when t1.shiji_mianji is null or t1.shiji_mianji=0 then t1.shiyongquan_mianji else t1.shiji_mianji end)*t7.area/t7.totalarea end),0) as area
+      ,isnull
+      ((case when t1.shiyongquan_mianji*t5.tax_rate*t7.area = 0 then 0
+      else
+      t1.shiyongquan_mianji*t5.tax_rate*t7.area/t7.totalarea end),0) as shuie
+      ,isnull(
+      (case when t1.shiji_mianji*t5.tax_rate*t7.area = 0 then 0
+      else t1.shiji_mianji*t5.tax_rate*t7.area/t7.totalarea end),0) as shiji_shuie
+      ,t1.zuoluo
+      ,t1.dilei
+      ,t1.quanshu
+      ,t1.shiyongquan_leixing
+      ,case t1.mianshui when '1' then '免税' else '应税' end as mianshui
+      ,t1.beizhu
+      ,t1.YiJiaoShui
+      ,case when t1.YiJiaoShui='1' then '已缴' else '未缴' end as YiJiaoShuiStatus
+      from @zongdi_table t3
+      left join t_tudizheng t1
+      on t1.map_id=t3.mapid and t3.layerid=t1.layer_id and t1.geom_id=t3.objectid
+      left join t_parent_child t7
+      on t1.map_id=t7.mapid and t1.layer_id=t7.sublayerid and t1.geom_id=t7.subobjectid and t7.layerid=@tax_layer_id
+      left join t_gongsi t2
+      on t1.dihao=t2.dihao and t1.nashuiren_shibiehao=t2.nashuiren_shibiehao
+      left join @tax_table t6
+      on t1.map_id=t6.mapid and t6.layerid=t7.layerid and t7.objectid=t6.objectid
+      left join t_tax_level t5
+      on t5.mapid=t1.map_id and t5.level_name=t6.swjb
+      left join t_parent_child t9
+      on t9.mapid=t3.mapid and t9.sublayerid=t3.layerid and t9.subobjectid=t3.objectid and t9.layerid=@jiedao_layer_id
+      left join t_object as jiedao_name
+      on t9.mapid=jiedao_name.mapid and t9.layerid=jiedao_name.layerid and t9.objectid=jiedao_name.objectid
+      left join t_parent_child t8
+      on t8.mapid=t9.mapid and t8.sublayerid=t9.layerid and t8.subobjectid=t9.objectid and t8.layerid=@qujie_layer_id
+      left join t_object as qujie_name
+      on t8.mapid=qujie_name.mapid and t8.layerid=qujie_name.layerid and t8.objectid=qujie_name.objectid
+      where t3.mapid=@mapid
+      and isnull(t1.dihao,'') like @dihao
+      and isnull(t1.tuhao,'') like @tuhao
+      and isnull(t1.bianhao,'') like @bianhao
+      and isnull(t1.quanshu,'') like @quanshu
+      and isnull(t1.dilei,'') like @dilei
+      and isnull(t1.shiyongquan_leixing,'') like @shiyongquan_leixing
+      and isnull(t1.nashuiren_shibiehao,'') like @nashuiren_shibiehao
+      and isnull(t1.shiyongquanren,'') like @faren_daibiao
+      and isnull(t2.qiye_mingcheng,'') like @qiye_mingcheng
+      and isnull(t2.lianxi_dianhua,'') like @lianxi_dianhua
+      and isnull(t1.YiJiaoShui,'0') like @YiJiaoShui
+      "/>
+    <ShuiWuCustomerReport value="select distinct
+      t1.[土地证号]
+      ,t1.[地号]
+      ,t1.[使用权人]
+      ,t1.[地类]
+      ,t1.[坐落(土地证)]
+      ,t1.[土地性质]
+      ,t1.[使用权类型]
+      ,t1.[使用权面积]
+      ,t1.[纳税人识别号]
+      ,t1.[纳税人名称]
+      ,t1.[土地等级]
+      ,CONVERT(varchar(12) , t1.[土地取得时间], 111 ) as [土地取得时间]
+      ,t1.[管理科所]
+      ,t1.[税收管理员]
+      ,t1.[取得土地使用支付价款]
+      ,t1.[土地面积(核实)]
+      ,t1.[应税面积]
+      ,t1.[减免面积]
+      ,t1.[适用税额]
+      ,t1.[年应税面积]
+      ,t1.[详细地址(税务)]
+      ,t1.[土地取得方式]
+      ,t1.[map_id]
+      ,t1.[layer_id]
+      ,t1.[geom_id]
+      ,t1.[信息来源]
+      ,t1.[数据是否一致]
+      ,t1.[备注]
+      ,t1.no
+      ,t1.[税务宗地编号]
+      ,t1.[税务宗地名称]
+      ,t1.[宗地号]
+      ,t1.[税务土地性质]
+      ,t1.[土地用途]
+      ,t1.[土地总价]
+      ,t1.[其中土地开发成本]
+      ,case when CONVERT(varchar(12) , t1.[初始取得时间], 111 ) ='1900/01/01' then '' else CONVERT(varchar(12) , t1.[初始取得时间], 111 ) end [初始取得时间]
+      ,case when CONVERT(varchar(12) , t1.[土地使用权终止时间], 111 ) ='1900/01/01' then '' else CONVERT(varchar(12) , t1.[土地使用权终止时间], 111 ) end [土地使用权终止时间]
+      ,t1.[减免税依据]
+      ,t1.[减免税金额]
+      ,t1.[应纳税额]
+      ,t1.[计税月份数]
+      ,t1.[减免税金额]
+      ,t1.[土地应税面积]
+      ,t1.[行政区域]
+      ,t1.[详细地址]
+      ,t1.[出租方纳税识别号]
+      ,t1.[出租方单位或个人名称]
+      ,t1.[联系电话]
+      ,t1.[出租方是否为村委会土地使用权]
+      ,t1.[是否为转租土地使用权]
+      ,t1.[承租土地面积]
+      ,t1.[支付的租金总额]
+      ,t1.[是否同时租赁地上房屋]
+      ,t1.[主管机关]
+      ,t1.[纳税人管理状态]
+      ,t1.[无偿使用单位纳税识别号]
+      ,t1.[无偿使用单位或个人名称]
+      ,t1.[无偿使用人是否缴纳土地使用税]
+      ,t1.[无偿提供他人使用面积]
+      ,t1.[适用税额代码]
+      ,t1.[宗地号(土地证)]
+      ,t1.[新比对结果]
+      ,t1.[flag]
+      ,isnull(
+      (case when t7.area = 0 then 0 else
+      (case when cast(t1.应税面积 as numeric(18, 2)) is null or cast(t1.应税面积 as numeric(18, 2))=0 then cast(t1.使用权面积 as numeric(18, 2)) else cast(t1.应税面积 as numeric(18, 2)) end)*t7.area/t7.totalarea end),0) as area
+      ,isnull
+      ((case when cast(t1.使用权面积 as numeric(18, 2))*t5.tax_rate*t7.area = 0 then 0
+      else
+      cast(t1.使用权面积 as numeric(18, 2))*t5.tax_rate*t7.area/t7.totalarea end),0) as shuie
+      ,isnull(
+      (case when cast(t1.应税面积 as numeric(18, 2))*t5.tax_rate*t7.area = 0 then 0
+      else cast(t1.应税面积 as numeric(18, 2))*t5.tax_rate*t7.area/t7.totalarea end),0) as shiji_shuie
+      from t_checked_Data t1
+      left join t_parent_child t7
+      on t1.map_id=t7.mapid and t1.layer_id=t7.sublayerid and t1.geom_id=t7.subobjectid and t7.layerid=@tax_layer_id
+      left join t_69_113 t6
+      on t1.map_id=t6.mapid and t6.layerid=t7.layerid and t7.objectid=t6.objectid
+      left join t_tax_level t5
+      on t5.mapid=t1.map_id and t5.level_name=t6.swjb
+      left join t_parent_child t9
+      on t9.mapid=t1.map_id and t9.sublayerid=t1.layer_id and t9.subobjectid=t1.geom_id and t9.layerid=@jiedao_layer_id
+      left join t_object as jiedao_name
+      on t9.mapid=jiedao_name.mapid and t9.layerid=jiedao_name.layerid and t9.objectid=jiedao_name.objectid
+      left join t_parent_child t8
+      on t8.mapid=t9.mapid and t8.sublayerid=t9.layerid and t8.subobjectid=t9.objectid and t8.layerid=@qujie_layer_id
+      left join t_object as qujie_name
+      on t8.mapid=qujie_name.mapid and t8.layerid=qujie_name.layerid and t8.objectid=qujie_name.objectid
+      where t1.map_id=@mapid
+      and isnull(t1.地号,'') like @地号
+      and isnull(t1.土地证号,'') like @土地证号
+      and isnull(t1.纳税人识别号,'') like @纳税人识别号
+      and isnull(t1.纳税人名称,'') like @纳税人名称
+      and isnull(t1.税务宗地编号,'') like @税务宗地编号
+      and isnull(t1.税务宗地名称,'') like @税务宗地名称
+      and isnull(t1.税务土地性质,'') like @税务土地性质
+      and isnull(t1.宗地号,'') like @宗地号
+      and isnull(t1.土地取得方式,'') like @土地取得方式
+      and isnull(t1.土地用途,'') like @土地用途
+      and isnull(t1.计税月份数,'') like @计税月份数
+      and isnull(t1.减免税依据,'') like @减免税依据
+      and isnull(t1.管理科所,'') like @管理科所
+      and isnull(t1.税收管理员,'') like @税收管理员
+      and  t1.no is not null
+      "/>
+    <GetTipText value="select t1.bianhao,t1.shiyongquanren
+      from t_tudizheng t1
+      where t1.dihao = (select 预编宗地号 from @zongdi where [MapId]=@mapid
+      and [LayerId]=@layerid
+      and [ObjectId]=@objectid)"/>
+    <GetTipTextShuiwu value="select t1.土地证号,t1.使用权人
+      from t_checked_Data t1
+      where t1.map_id=@mapid
+      and t1.layer_id=@layerid
+      and t1.geom_id=@objectid"/>
+    <CheckParentChild value="select count(1) from t_parent_child"/>
+    <UpdateParentChild value="update t_parent_child
+      set t_parent_child.TotalArea=t2.area
+      from t_parent_child,
+      (
+      select MapId,LayerId,SubLayerId,SubObjectId,SUM(area) as area from t_parent_child
+      group by MapId,LayerId,SubLayerId,SubObjectId
+      ) t2
+      where t_parent_child.MapId=t2.MapId 
+      and t_parent_child.LayerId=t2.LayerId
+      and t_parent_child.SubLayerId=t2.SubLayerId
+      and t_parent_child.SubObjectId=t2.SubObjectId
+      and t_parent_child.MapId=@mapid"/>
+    <InsertParentChild value="insert into t_parent_child(MapId,LayerId,ObjectId,SubLayerId,SubObjectId,Area,TotalArea)
+      values(@mapid,@layerid,@objectid,@sublayerid,@subobjectid,@Area,@TotalArea)"/>
+    <GetParentChild value="select 
+      t1.LayerId as LayerId1
+      ,t1.ObjectId as ObjectId1
+      ,t1.XZQMC as qujie
+      ,t3.LayerId as LayerId2
+      ,t3.ObjectId as ObjectId2
+      ,t3.DJQMC as jiedao
+      from @qujie_table t1
+      left join t_parent_child t2
+      on t1.MapId=t2.MapId and t1.LayerId=t2.LayerId and t1.ObjectId=t2.ObjectId
+      left join @jiedao_table t3
+      on t2.MapId=t3.MapId and t2.SubLayerId=t3.LayerId and t2.SubObjectId=t3.ObjectId
+      where  ltrim(rtrim(t1.XZQMC)) not like '%海'
+      and LTRIM(rtrim(t3.DJQMC)) not like '%海'
+      order by t1.XZQMC,t3.DJQMC"/>
+    <GetGeomtry value="select * from t_object where mapid=@mapid and layerid=@layerid and objectid=@objectid"/>
+    <GetJiedao value="SELECT t1.SubLayerId,t1.SubObjectId,t2.Name
+      FROM t_parent_child t1
+      left join t_object t2
+      on t1.MapId=t2.MapId
+      and t1.SubLayerId=t2.LayerId
+      and t1.SubObjectId=t2.ObjectId
+      where t1.LayerId=@qujie_layer_id
+      and t1.ObjectId=@qujie_id
+      and t1.SubLayerId=@jiedao_layer_id
+      and t1.MapId=@mapid "/>
+    <GetNaShuiRenList value="select
+      bianhao
+      ,shiyongquanren
+      ,zuoluo
+      ,nashuiren_shibiehao
+      ,dihao
+      from t_tudizheng
+      where bianhao is not null
+      and bianhao!=''
+      order by bianhao"/>
+    <GetNaShuiRenListView value="select
+      bianhao
+      ,shiyongquanren
+      ,zuoluo
+      ,nashuiren_shibiehao
+      from t_tudizheng
+      where bianhao is not null
+      and bianhao!=''
+      order by bianhao"/>
+    <UpdateRaShuiRen value="update t_tudizheng
+      set nashuiren_shibiehao=@nashuiren_shibiehao
+      where dihao=@dihao"/>
+    <SelectUndefineZongDi value="select ObjectId
+      from @table
+      where 
+      土地证情况='无证'
+      and MapId=@mapid
+      and LayerId=@zongdi_layer
+      "/>
+    <SelectSymbol value="
+      select FLDM,objectid
+      from @table"/>
+    <GetShuiWuJiBie value="select
+      distinct
+      t2.SWJB
+      from t_parent_child t1
+      inner join @shuiwu_table t2
+      on t1.MapId=t2.MapId
+      and t1.LayerId=t2.LayerId
+      and t1.ObjectId=t2.ObjectId
+      where t1.MapId=@mapid
+      and t1.SubLayerId=@SubLayerId
+      and t1.SubObjectId=@SubObjectId
+      order by t2.SWJB"/>
+    <DeleteNaShuiRenXinXi value="delete t_NaShuiRenXinXi"/>
+    <InsertNaShuiRenXinXi value="insert into t_NaShuiRenXinXi
+      values(
+      @纳税人识别号
+      ,@纳税人名称
+      ,@生产经营地址
+      ,@注册地址
+      ,@纳税人管理状态
+      ,@管理科所
+      ,@税收管理员
+      ,@法定代表人
+      ,@法人证件号
+      ,@法定代表人身份证件号码
+      ,@法定代表人身份证件类型
+      ,@注册地址电话
+      ,@法定代表人移动电话
+      ,@法定代表人固定电话
+      ,@税务登记证件号码
+      ,@组织机构代码证号
+      ,@工商证照冠字号码
+      ,@工商证照号码
+      ,@工商证照名称
+      ,@登记类别)"/>
+    <DeleteNaShuiRenZiYouTuDiXinXi value="delete t_NaShuiRenZiYouTuDiXinXi"/>
+    <InsertNaShuiRenZiYouTuDiXinXi value="insert into t_NaShuiRenZiYouTuDiXinXi(
+    纳税人识别号
+    ,纳税人名称
+    ,土地等级
+    ,土地用途
+    ,土地性质
+    ,土地使用证号
+    ,土地取得时间
+    ,宗地容积率
+    ,取得土地使用权支付价款
+    ,土地开发成本费用
+    ,土地面积
+    ,应税土地面积
+    ,减免土地面积
+    ,适用税额
+    ,年应纳土地税
+    ,详细地址
+    ,土地取得方式
+    ,行政区域
+    ,管理科所
+    ,税收管理员
+    ) values(
+    @纳税人识别号
+    ,@纳税人名称
+    ,@土地等级
+    ,@土地用途
+    ,@土地性质
+    ,@土地使用证号
+    ,@土地取得时间
+    ,@宗地容积率
+    ,@取得土地使用权支付价款
+    ,@土地开发成本费用
+    ,@土地面积
+    ,@应税土地面积
+    ,@减免土地面积
+    ,@适用税额
+    ,@年应纳土地税
+    ,@详细地址
+    ,@土地取得方式
+    ,@行政区域
+    ,@管理科所
+    ,@税收管理员
+    )"/>
+    <DeleteWuChangTiGongTaRenTuDi value="delete t_WuChangTiGongTaRenTuDi"/>
+    <InsertWuChangTiGongTaRenTuDi value="insert into t_WuChangTiGongTaRenTuDi(
+    纳税人识别号
+    ,纳税人名称
+    ,行政区域
+    ,详细地址
+    ,土地使用证号
+    ,管理科所
+    ,税收管理员
+    ,无偿提供他人使用面积
+    ,无偿使用单位纳税识别号
+    ,无偿使用单位或个人名称
+    ,无偿使用人联系电话
+    ,无偿使用人是否缴纳土地使用税
+    ,适用税额
+    ,纳税人管理状态
+    ) values(
+    @纳税人识别号
+    ,@纳税人名称
+    ,@行政区域
+    ,@详细地址
+    ,@土地使用证号
+    ,@管理科所
+    ,@税收管理员
+    ,@无偿提供他人使用面积
+    ,@无偿使用单位纳税识别号
+    ,@无偿使用单位或个人名称
+    ,@无偿使用人联系电话
+    ,@无偿使用人是否缴纳土地使用税
+    ,@适用税额
+    ,@纳税人管理状态
+    )"/>
+    <DeleteYouChangZuLinTuDi value="delete t_YouChangZuLinTuDi"/>
+    <InsertYouChangZuLinTuDi value="insert into t_YouChangZuLinTuDi(
+    纳税人识别号
+    ,纳税人名称
+    ,行政区域
+    ,详细地址
+    ,土地使用证号
+    ,出租方纳税识别号
+    ,出租方单位或个人名称
+    ,联系电话
+    ,出租方是否为村委会土地使用权
+    ,是否为转租土地使用权
+    ,主管机关
+    ,管理科所
+    ,税收管理员
+    ,承租土地面积
+    ,应税土地面积
+    ,适用税额
+    ,支付的租金总额
+    ,是否同时租赁地上房屋
+    ,纳税人管理状态) values(
+    @纳税人识别号
+    ,@纳税人名称
+    ,@行政区域
+    ,@详细地址
+    ,@土地使用证号
+    ,@出租方纳税识别号
+    ,@出租方单位或个人名称
+    ,@联系电话
+    ,@出租方是否为村委会土地使用权
+    ,@是否为转租土地使用权
+    ,@主管机关
+    ,@管理科所
+    ,@税收管理员
+    ,@承租土地面积
+    ,@应税土地面积
+    ,@适用税额
+    ,@支付的租金总额
+    ,@是否同时租赁地上房屋
+    ,@纳税人管理状态)"/>
+    <SelectTable value="SELECT syscolumns.name as column_name,systypes.name,syscolumns.isnullable,
+       syscolumns.length ,
+       isnull(sys.extended_properties.value,syscolumns.name) as column_comment
+      FROM syscolumns
+      inner join systypes 
+      on syscolumns.xusertype = systypes.xusertype 
+      left join sys.extended_properties
+      on sys.extended_properties.minor_id=syscolumns.colid
+      and sys.extended_properties.major_id=OBJECT_ID(@table)
+      WHERE syscolumns.id = object_id(@table)"/>
+    <SelectRelation value="select * from t_Relation order by count desc, type"/>
+    <SelectRelationByName value="select * from t_Relation where name=@name order by type"/>
+    <DeleteRelation value="delete t_Relation where name=@name"/>
+    <UpdateRelationByName value="update t_Relation set count=count+1 where name=@name"/>
+    <InsertRelation value="insert into t_Relation values(
+      @name
+      ,@table1
+      ,@field1
+      ,@condition
+      ,@table2
+      ,@field2
+      ,@count
+      ,@type)"/>
+    <SelectRelationName value="select distinct name, count from t_Relation order by count desc,name"/>
+    <SelectNaShuiRenZiYouTuDiXinXi value="SELECT distinct TOP 1 W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[土地使用证号]
+      ,[详细地址]
+      ,[土地等级]
+      ,[土地面积]
+      ,[管理科所]
+      ,[土地取得时间]
+      ,[取得土地使用权支付价款]
+      ,[应税土地面积]
+      ,[减免土地面积]
+      ,[适用税额]
+      ,[年应纳土地税]
+      ,[土地取得方式]
+      ,[税收管理员]
+      ,'ZiYou' AS [信息来源]
+    FROM [t_NaShuiRenZiYouTuDiXinXi] W
+    WHERE (W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))
+    AND ([土地使用证号] = '@[土地使用证号]'
+    OR [土地使用证号] LIKE '%@[土地使用证号_year]%@[土地使用证号_no]%')
+    AND [土地面积]=@[土地面积]"/>
+    <SelectWuChangTiGongTaRenTuDi value="SELECT distinct TOP 1 W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[土地使用证号]
+      ,[详细地址]
+     , CASE WHEN [Level_Name] = 1 
+      THEN '一级('+cast(cast(T.Tax_Rate AS decimal(18,2)) AS varchar) + ')' 
+      end [土地等级] 
+      ,[无偿提供他人使用面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,null as [应税土地面积]
+      ,null as [减免土地面积]
+      ,[适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,[税收管理员]
+      ,'WuChang' AS [信息来源]
+  FROM [t_WuChangTiGongTaRenTuDi] W
+  LEFT JOIN [t_tax_level] T
+  ON T.Tax_Rate = [适用税额]
+    WHERE (W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))
+    AND ([土地使用证号] = '@[土地使用证号]'
+    OR [土地使用证号] LIKE '%@[土地使用证号_year]%@[土地使用证号_no]')
+    AND [无偿提供他人使用面积]=@[土地面积]"/>
+    <SelectYouChangZuLinTuDi value="SELECT distinct TOP 1 W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[详细地址]
+      ,[土地使用证号]
+     , CASE WHEN [Level_Name] = 1 
+      THEN '一级('+cast(cast(T.Tax_Rate AS decimal(18,2)) AS varchar) + ')' 
+      end [土地等级] 
+      ,[承租土地面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,[应税土地面积]
+      ,null as [减免土地面积]
+      ,[适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,[税收管理员]
+      ,'YouChang' AS [信息来源]
+  FROM [t_YouChangZuLinTuDi] W
+  LEFT JOIN [t_tax_level] T
+  ON T.Tax_Rate = [适用税额]
+    WHERE (W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))
+    AND ([土地使用证号] = '@[土地使用证号]'
+    OR [土地使用证号] LIKE '%@[土地使用证号_year]%@[土地使用证号_no]%')
+    AND [承租土地面积]=@[土地面积]"/>
+    <SelectNaShuiRenZiYouTuDiXinXi_NonNo value="SELECT distinct TOP 1 W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[土地使用证号]
+      ,[详细地址]
+      ,[土地等级]
+      ,[土地面积]
+      ,[管理科所]
+      ,[土地取得时间]
+      ,[取得土地使用权支付价款]
+      ,[应税土地面积]
+      ,[减免土地面积]
+      ,[适用税额]
+      ,[年应纳土地税]
+      ,[土地取得方式]
+      ,[税收管理员]
+      ,'ZiYou' AS [信息来源]
+    FROM [t_NaShuiRenZiYouTuDiXinXi] W
+    WHERE (W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))
+    AND [土地面积]=@[土地面积]"/>
+    <SelectWuChangTiGongTaRenTuDi_NonNo value="SELECT distinct TOP 1 W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[土地使用证号]
+      ,[详细地址]
+     , CASE WHEN [Level_Name] = 1 
+      THEN '一级('+cast(cast(T.Tax_Rate AS decimal(18,2)) AS varchar) + ')' 
+      end [土地等级] 
+      ,[无偿提供他人使用面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,null as [应税土地面积]
+      ,null as [减免土地面积]
+      ,[适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,[税收管理员]
+      ,'WuChang' AS [信息来源]
+  FROM [t_WuChangTiGongTaRenTuDi] W
+  LEFT JOIN [t_tax_level] T
+  ON T.Tax_Rate = [适用税额]
+    WHERE (W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))
+    AND [无偿提供他人使用面积]=@[土地面积]"/>
+    <SelectYouChangZuLinTuDi_NonNo value="SELECT distinct TOP 1 W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[详细地址]
+      ,[土地使用证号]
+     , CASE WHEN [Level_Name] = 1 
+      THEN '一级('+cast(cast(T.Tax_Rate AS decimal(18,2)) AS varchar) + ')' 
+      end [土地等级] 
+      ,[承租土地面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,[应税土地面积]
+      ,null as [减免土地面积]
+      ,[适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,[税收管理员]
+      ,'YouChang' AS [信息来源]
+  FROM [t_YouChangZuLinTuDi] W
+  LEFT JOIN [t_tax_level] T
+  ON T.Tax_Rate = [适用税额]
+    WHERE (W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))
+    AND [承租土地面积]=@[土地面积]"/>
+    <SelectNaShuiRenZiYouTuDiXinXi_Non value="SELECT distinct W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[土地使用证号]
+      ,[详细地址]
+      ,[土地等级]
+      ,[土地面积]
+      ,[管理科所] 
+      ,[土地取得时间]
+      ,[取得土地使用权支付价款]
+      ,[应税土地面积]
+      ,[减免土地面积]
+      ,[适用税额]
+      ,[年应纳土地税]
+      ,[土地取得方式]
+      ,[税收管理员]
+      ,'ZiYou' AS [信息来源]
+    FROM [t_NaShuiRenZiYouTuDiXinXi] W
+    WHERE W.[纳税人名称]='@[纳税人名称]'
+   OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != '')"/>
+    <SelectWuChangTiGongTaRenTuDi_Non value="SELECT distinct W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[土地使用证号]
+      ,[详细地址]
+     , CASE WHEN [Level_Name] = 1 
+      THEN '一级('+cast(cast(T.Tax_Rate AS decimal(18,2)) AS varchar) + ')' 
+      end [土地等级] 
+      ,[无偿提供他人使用面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,null as [应税土地面积]
+      ,null as [减免土地面积]
+      ,[适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,[税收管理员]
+      ,'WuChang' AS [信息来源]
+  FROM [t_WuChangTiGongTaRenTuDi] W
+  LEFT JOIN [t_tax_level] T
+  ON T.Tax_Rate = [适用税额]
+    WHERE W.[纳税人名称]='@[纳税人名称]'
+     OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != '')"/>
+    <SelectYouChangZuLinTuDi_Non value="SELECT distinct W.[纳税人识别号]
+      ,W.[纳税人名称]
+      ,[详细地址]
+      ,[土地使用证号]
+     , CASE WHEN [Level_Name] = 1 
+      THEN '一级('+cast(cast(T.Tax_Rate AS decimal(18,2)) AS varchar) + ')' 
+      end [土地等级] 
+      ,[承租土地面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,[应税土地面积]
+      ,null as [减免土地面积]
+      ,[适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,[税收管理员]
+      ,'YouChang' AS [信息来源]
+  FROM [t_YouChangZuLinTuDi] W
+  LEFT JOIN [t_tax_level] T
+  ON T.Tax_Rate = [适用税额]
+    WHERE W.[纳税人名称]='@[纳税人名称]'
+    OR W.[纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != '')"/>
+    <SelectNaShuiRenXinXi value="SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,null AS [详细地址]
+      ,null AS [土地使用证号]
+     , null AS [土地等级] 
+      ,null AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,null as [应税土地面积]
+      ,null as [减免土地面积]
+      ,null as [适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,null as [税收管理员]
+      ,'纳税人信息' AS [信息来源]
+  FROM [t_NaShuiRenXinXi]
+    WHERE [纳税人名称]='@[纳税人名称]'
+    OR [纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != '')"/>
+    <SelectJiaoshui value="SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,null AS [详细地址]
+      ,null AS [土地使用证号]
+     , null AS [土地等级] 
+      ,[总面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,null as [应税土地面积]
+      ,null as [减免土地面积]
+      ,null as [适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,null as [税收管理员]
+      ,'缴税信息' AS [信息来源]
+  FROM [jiaoshui]
+    WHERE ([纳税人名称]='@[纳税人名称]'
+    OR [纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != ''))"/>
+    <SelectJiaoshuiByArea value="SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,null AS [详细地址]
+      ,null AS [土地使用证号]
+     , null AS [土地等级] 
+      ,[总面积] AS [土地面积]
+      ,[管理科所]
+      ,null as [土地取得时间]
+      ,null as [取得土地使用权支付价款]
+      ,null as [应税土地面积]
+      ,null as [减免土地面积]
+      ,null as [适用税额]
+      ,null as [年应纳土地税]
+      ,null as [土地取得方式]
+      ,null as [税收管理员]
+      ,'缴税信息' AS [信息来源]
+  FROM [jiaoshui]
+    WHERE ([纳税人名称]='@[纳税人名称]'
+    OR [纳税人名称] in (
+    SELECT [shiyongquanren_bieming] 
+    FROM [t_tudizheng]
+	WHERE [shiyongquanren]='@[纳税人名称]'
+	and [shiyongquanren_bieming] != '')"/>
+    <SelectTaxLevel value="SELECT [MapId]
+      ,[Level_Name]
+      ,[Tax_Rate]
+      ,[Color]
+  FROM [t_tax_level]
+    WHERE [Tax_Rate]=@[Tax_Rate]"/>
+    <SelectTudiByShiyongquanren value="SELECT [dihao]
+      ,[shiyongquanren]
+      ,[shiyongquanren_bieming]
+      ,[zuoluo]
+      ,[shiyongquan_mianji]
+      ,[nashuiren_shibiehao]
+  FROM [t_tudizheng]
+    WHERE [shiyongquanren] LIKE '%@[shiyongquanren]%'
+    ORDER BY [nashuiren_shibiehao]"/>
+    <SelectShuiyuanByShiyongquanren value="SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,[详细地址]
+      ,[土地面积]
+  FROM [t_NaShuiRenZiYouTuDiXinXi]
+  WHERE [纳税人名称] LIKE '%@[纳税人名称]%'
+  UNION 
+  SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,[详细地址]
+      ,[无偿提供他人使用面积] AS [土地面积]
+  FROM [t_WuChangTiGongTaRenTuDi]
+  WHERE [纳税人名称] LIKE '%@[纳税人名称]%'
+  UNION
+  SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,[详细地址]
+      ,[承租土地面积] AS [土地面积]
+  FROM [t_YouChangZuLinTuDi]
+  WHERE [纳税人名称] LIKE '%@[纳税人名称]%'
+  ORDER BY [纳税人识别号]"/>
+    <UpdateTudiBieming value="UPDATE [t_tudizheng]
+  SET [shiyongquanren_bieming] = '@[shiyongquanren_bieming]'
+  WHERE [dihao] = '@[dihao]'"/>
+    <SelectMapid value="SELECT max([MapId]) as[MapId]
+  FROM [t_map]"/>
+    <SelectHezongdi value="select dihao,count(dihao)
+  FROM t_tudizheng
+  group by map_id,layer_id,dihao
+  having count(dihao) > 1 and layer_id = @layerId"/>
+    <SelectDanzongdi value="select dihao,count(dihao)
+  FROM t_tudizheng
+  group by map_id,layer_id,dihao
+  having count(dihao) = 1 and layer_id = @layerId "/>
+    <SelectQuanxian value="select t1.编号
+      ,max(t1.节点名称) as 节点名称
+      ,t1.父节点编号
+      ,max(t2.节点名称) as 父节点名称
+  FROM t_quanxian t1
+  left join  t_quanxian t2 on t1.父节点编号 = t2.编号
+  group by t1.[父节点编号],t1.编号 
+  order by t1.[父节点编号],t1.编号"/>
+    <SelectQuanxian_tudi value="select distinct t1.编号
+      ,max(t1.节点名称) as 节点名称
+      ,t1.父节点编号
+      ,max(t2.节点名称) as 父节点名称
+  FROM t_quanxian t1
+  left join  t_quanxian t2 on t1.父节点编号 = t2.编号
+  left join t_user_quanxian t3 on t1.编号 = t3.权限编号
+  left join t_login_user t4 on t4.用户名 = t3.用户名
+  where t4.权限 = '土地用户管理员'
+  group by t1.[父节点编号],t1.编号 
+  order by t1.[父节点编号],t1.编号"/>
+    <SelectQuanxian_shuiwu value="select distinct t1.编号
+      ,max(t1.节点名称) as 节点名称
+      ,t1.父节点编号
+      ,max(t2.节点名称) as 父节点名称
+  FROM t_quanxian t1
+  left join  t_quanxian t2 on t1.父节点编号 = t2.编号
+  left join t_user_quanxian t3 on t1.编号 = t3.权限编号
+  where t1.管理员权限 ='1'
+  group by t1.[父节点编号],t1.编号 
+  order by t1.[父节点编号],t1.编号"/>
+    <SelectLoginUser value="SELECT 用户名
+      ,密码
+      ,权限
+  FROM t_login_user
+  where 用户名 = '@name'
+  and 密码 = '@password'"/>
+    <SelectByUserName value="SELECT 用户名
+      ,密码
+      ,权限
+  FROM t_login_user
+  where 用户名 = '@name'"/>
+    <SelectQuanxianByUserName value="SELECT 用户名
+      ,密码
+      ,权限
+  FROM t_login_user
+  where 用户名 = @name"/>
+    <SelectUser value="SELECT 用户名
+      ,密码
+      ,权限
+  FROM t_login_user
+  where 用户名 like @name
+  and 权限 like @quanxian"/>
+    <InsertUser value="insert into t_login_user(用户名
+      ,密码
+      ,权限,createTime)
+      values(@name,@password,@quanxian,GETDATE())"/>
+    <UpdateUserPassword value="update t_login_user set 密码 = @密码 where 用户名 = @用户名"/>
+    <UpdateUser value="update t_login_user set 权限 = @quanxian where 用户名 = @name"/>
+    <DeleteUser value="delete t_login_user where 用户名 = @name"/>
+    <DeleteUserQuanxian value="delete t_user_quanxian where 用户名 = @name"/>
+    <SelectUserQuanxian value="SELECT t1.用户名
+      ,t1.权限编号
+      ,t2.节点名称
+  FROM t_user_quanxian t1
+  left join t_quanxian t2 on t1.权限编号 = t2.编号
+  where t1.用户名= @name"/>
+    <SelectUserQuanxianByName value="SELECT t1.用户名
+      ,t1.权限编号
+      ,t2.节点名称
+  FROM t_user_quanxian t1
+  left join t_quanxian t2 on t1.权限编号 = t2.编号
+  where t1.用户名= '@name'"/>
+    <SelectUserQuanxian_tudi value="SELECT 编号
+      ,节点名称
+  FROM t_quanxian
+  where 土地用户权限 = '1'"/>
+    <delTudiQuanxian value="update t_quanxian set 土地用户权限 = '0'"/>
+    <updateTudiQuanxian value="update t_quanxian set 土地用户权限 = '1' where 节点名称 = @节点名称"/>
+    <SelectUserQuanxian_shuiwu value="SELECT 编号
+      ,节点名称
+  FROM t_quanxian
+  where 税务用户权限 = '1'"/>
+    <SelectUserQuanxian_guanli value="SELECT 编号
+      ,节点名称
+  FROM t_quanxian
+  where 管理员权限 = '1'"/>
+    <delGuanliyuanQuanxian value="update t_quanxian set 管理员权限 = '0'"/>
+    <updateGuanliyuanQuanxian value="update t_quanxian set 管理员权限 = '1' where 节点名称 = @节点名称"/>
+    <delShuiwuQuanxian value="update t_quanxian set 税务用户权限 = '0'"/>
+    <updateShuiwuQuanxian value="update t_quanxian set 税务用户权限 = '1' where 节点名称 = @节点名称"/>
+    <InsertUserQuanxian value="insert into t_user_quanxian(用户名,权限编号)
+ values(@name,@no)"/>
+    <InsertUserQuanxianByQuanxian value="insert into t_user_quanxian(用户名,权限编号)
+       SELECT @name ,编号 as 权限编号
+        FROM t_quanxian t
+        where t.管理员权限 like @管理员
+        and t.土地用户权限 like @土地用户
+        and t.税务用户权限 like @税务用户  "/>;
+    <SelectNoByQuanxianName value="SELECT [编号]
+  FROM [t_quanxian]
+  where 节点名称 = @name"/>
+    <DeleteUserQuanxian value="delete
+  FROM [t_user_quanxian]
+  where 用户名=@name"/>
+    <insertTudizhengFromLayer value="INSERT INTO [t_tudizheng]
+           ([dihao]
+           ,[bianhao]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[quanshu]
+           ,[tuhao]
+           ,[dilei]
+           ,[shiyongquan_leixing]
+           ,[shiyongquanren]
+           ,[zuoluo]
+           ,[qude_jiage]
+           ,[zhongzhi_riqi]
+           ,[shiyongquan_mianji]
+           ,[duyong_mianji]
+           ,[fentan_mianji]
+           ,[shiji_mianji]
+           ,[nashuiren_shibiehao]
+           ,[mianshui]
+           ,[beizhu]
+           ,[YiJiaoShui]
+           ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime])
+  values(@预编宗地号
+      ,@土地证号
+      ,@MapId
+      ,@LayerId
+      ,@ObjectId
+      ,@土地性质
+      ,@宗地号
+      ,@用途
+      ,@使用类型
+      ,@权利人
+      ,@坐落
+      ,0.00
+      ,@终止日期
+      ,@使用权面积
+      ,@宗地面积
+      ,@分摊面积
+      ,@Shape_Area
+      ,@纳税人识别
+     ,'0'
+     ,@备注
+     ,'0'
+     ,''
+      ,@userName
+      ,@updateTime
+)"/>
+    <selectTudizhengFromLayer value="SELECT 
+      [预编宗地号],[土地证号],
+      [MapId]
+      ,[LayerId]
+      ,[ObjectId]
+      ,[土地性质]
+      ,[宗地号]
+      ,[用途]
+      ,[使用类型]
+      ,[权利人]
+      ,[坐落]
+      ,[终止日期]
+      ,[面积]
+      ,[Shape_Area]
+      ,[纳税人识别]
+     ,[备注]
+  FROM @table"/>
+
+    <InserCheckData value="INSERT INTO t_checked_Data
+           ([no],[土地证号],[宗地号(土地证)]
+           ,[地号]
+           ,[使用权人]
+           ,[地类]
+           ,[坐落(土地证)]
+           ,[土地性质]
+           ,[使用权类型]
+           ,[使用权面积]
+           ,[纳税人识别号]
+           ,[纳税人名称]
+           ,[土地等级]
+           ,[土地取得时间]
+           ,[管理科所]
+           ,[税收管理员]
+           ,[取得土地使用支付价款]
+           ,[土地面积(核实)]
+           ,[应税面积]
+           ,[减免面积]
+           ,[适用税额]
+           ,[年应税面积]
+           ,[详细地址(税务)]
+           ,[土地取得方式]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[信息来源]
+           ,[数据是否一致]
+           ,[备注]
+           ,[userName]
+           ,[updateTime]
+           ,[税务宗地编号]
+           ,[税务宗地名称]
+           ,[宗地号]
+           ,[税务土地性质]
+           ,[土地用途]
+           ,[土地总价]
+           ,[其中土地开发成本]
+           ,[初始取得时间]
+           ,[土地使用权终止时间]
+           ,[减免税依据]
+           ,[减免税金额]
+           ,[应纳税额]
+           ,[计税月份数])
+     VALUES
+           (@no,@土地证号,@土地证宗地号
+           ,@地号
+           ,@使用权人
+           ,@地类
+           ,@坐落
+           ,@土地性质
+           ,@使用权类型
+           ,@使用权面积
+           ,@纳税人识别号
+           ,@纳税人名称
+           ,@土地等级
+           ,@土地取得时间
+           ,@管理科所
+           ,@税收管理员
+           ,@取得土地使用支付价款
+           ,@土地面积
+           ,@应税面积
+           ,@减免面积
+           ,@适用税额
+           ,@年应税面积
+           ,@详细地址
+           ,@土地取得方式
+           ,@map_id
+           ,@layer_id
+           ,@geom_id
+           ,@信息来源
+           ,@数据是否一致
+           ,@备注
+           ,@userName
+           ,@updateTime
+           ,@税务宗地编号
+           ,@税务宗地名称
+           ,@宗地号
+           ,@税务土地性质
+           ,@土地用途
+           ,@土地总价
+           ,@其中土地开发成本
+           ,@初始取得时间
+           ,@土地使用权终止时间
+           ,@减免税依据
+           ,@减免税金额
+           ,@应纳税额
+           ,@计税月份数)"/>
+    <selectMaxNo value="SELECT MAX(no) 
+  FROM t_checked_Data"/>
+    <SelectDihao value="SELECT 预编宗地号
+  FROM @table
+  where MapId = @mapid
+  and LayerId =@layerid
+  and ObjectId = @objectid"/>
+    <SelectTudiMianji value="SELECT layer_id
+      ,shiyongquan_mianji
+      ,shiyongquanren
+      ,shiyongquanren_bieming
+  FROM t_tudizheng
+  where (shiyongquanren = '@shiyongquanren' or shiyongquanren_bieming = '@shiyongquanren')
+  and layer_id =@layerid
+  "/>
+  <SelectZiyou value="SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,[土地等级]
+      ,[土地用途]
+      ,[土地性质]
+      ,[土地使用证号]
+      ,[土地取得时间]
+      ,[宗地容积率]
+      ,[取得土地使用权支付价款]
+      ,[土地开发成本费用]
+      ,[土地面积]
+      ,[应税土地面积]
+      ,[减免土地面积]
+      ,[适用税额]
+      ,[年应纳土地税]
+      ,[详细地址]
+      ,[土地取得方式]
+      ,[行政区域]
+      ,[管理科所]
+      ,[税收管理员]
+  FROM [t_NaShuiRenZiYouTuDiXinXi]"/>
+  <SelectNaShuiRenByNo value="SELECT [纳税人识别号]
+      ,[纳税人名称]
+      ,[生产经营地址]
+      ,[注册地址]
+      ,[纳税人管理状态]
+      ,[管理科所]
+      ,[税收管理员]
+      ,[法定代表人]
+      ,[法人证件号]
+      ,[法定代表人身份证件号码]
+      ,[法定代表人身份证件类型]
+      ,[注册地址电话]
+      ,[法定代表人移动电话]
+      ,[法定代表人固定电话]
+      ,[税务登记证件号码]
+      ,[组织机构代码证号]
+      ,[工商证照冠字号码]
+      ,[工商证照号码]
+      ,[工商证照名称]
+      ,[登记类别]
+  FROM [t_NaShuiRenXinXi]
+  where 纳税人识别号 =@纳税人识别号"/>
+  <DeleteNashuiren value="DELETE FROM [t_NaShuiRenXinXi]
+  where 纳税人识别号 =@纳税人识别号"/>
+  <InsertNashuiren value="INSERT INTO [t_NaShuiRenXinXi]
+           ([纳税人识别号]
+           ,[纳税人名称]
+           ,[生产经营地址]
+           ,[注册地址]
+           ,[纳税人管理状态]
+           ,[管理科所]
+           ,[税收管理员]
+           ,[法定代表人]
+           ,[法人证件号]
+           ,[法定代表人身份证件号码]
+           ,[法定代表人身份证件类型]
+           ,[注册地址电话]
+           ,[法定代表人移动电话]
+           ,[法定代表人固定电话]
+           ,[税务登记证件号码]
+           ,[组织机构代码证号]
+           ,[工商证照冠字号码]
+           ,[工商证照号码]
+           ,[工商证照名称]
+           ,[登记类别])
+     VALUES
+           (@纳税人识别号
+           ,@纳税人名称
+           ,@生产经营地址
+           ,@注册地址
+           ,@纳税人管理状态
+           ,@管理科所
+           ,@税收管理员
+           ,@法定代表人
+           ,@法人证件号
+           ,@法定代表人身份证件号码
+           ,@法定代表人身份证件类型
+           ,@注册地址电话
+           ,@法定代表人移动电话
+           ,@法定代表人固定电话
+           ,@税务登记证件号码
+           ,@组织机构代码证号
+           ,@工商证照冠字号码
+           ,@工商证照号码
+           ,@工商证照名称
+           ,@登记类别)"/>
+  <UpdateNashuiren value="UPDATE [t_NaShuiRenXinXi]
+   SET [纳税人名称] = @纳税人名称
+      ,[生产经营地址] = @生产经营地址
+      ,[注册地址] = @注册地址
+      ,[纳税人管理状态] = @纳税人管理状态
+      ,[管理科所] = @管理科所
+      ,[税收管理员] = @税收管理员
+      ,[法定代表人] = @法定代表人
+      ,[法人证件号] = @法人证件号
+      ,[法定代表人身份证件号码] = @法定代表人身份证件号码
+      ,[法定代表人身份证件类型] = @法定代表人身份证件类型
+      ,[注册地址电话] = @注册地址电话
+      ,[法定代表人移动电话] = @法定代表人移动电话
+      ,[法定代表人固定电话] = @法定代表人固定电话
+      ,[税务登记证件号码] = @税务登记证件号码
+      ,[组织机构代码证号] = @组织机构代码证号
+      ,[工商证照冠字号码] = @工商证照冠字号码
+      ,[工商证照号码] = @工商证照号码
+      ,[工商证照名称] = @工商证照名称
+      ,[登记类别] = @登记类别
+      where [纳税人识别号] = @纳税人识别号"/>
+    <InsertTudiFromOtherLayerId value="INSERT INTO [t_tudizheng]
+           ([dihao]
+           ,[bianhao]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[quanshu]
+           ,[tuhao]
+           ,[dilei]
+           ,[shiyongquan_leixing]
+           ,[shiyongquanren]
+           ,[zuoluo]
+           ,[qude_jiage]
+           ,[zhongzhi_riqi]
+           ,[shiyongquan_mianji]
+           ,[duyong_mianji]
+           ,[fentan_mianji]
+           ,[shiji_mianji]
+           ,[nashuiren_shibiehao]
+           ,[mianshui]
+           ,[beizhu]
+           ,[YiJiaoShui]
+           ,[shiyongquanren_bieming]
+           ,[userName]
+           ,[updateTime])
+     SELECT [dihao]
+           ,[bianhao]
+           ,[map_id]
+           ,@LayerIdNew
+           ,geom_id + @geomId
+           ,[quanshu]
+           ,[tuhao]
+           ,[dilei]
+           ,[shiyongquan_leixing]
+           ,[shiyongquanren]
+           ,[zuoluo]
+           ,[qude_jiage]
+           ,[zhongzhi_riqi]
+           ,[shiyongquan_mianji]
+           ,[duyong_mianji]
+           ,[fentan_mianji]
+           ,[shiji_mianji]
+           ,[nashuiren_shibiehao]
+           ,[mianshui]
+           ,[beizhu]
+           ,[YiJiaoShui]
+           ,[shiyongquanren_bieming]
+           ,[userName]
+           ,[updateTime] FROM t_tudizheng WHERE layer_id = @LayerId"/>
+
+    <SelectQuanxianByshuiwu value="SELECT t1.[用户名]
+      ,t1.[权限编号]
+      ,t2.节点名称
+      ,t3.节点名称 as 父节点名称
+  FROM [t_user_quanxian] t1
+  left join t_quanxian t2 on t1.权限编号 = t2.编号
+  left join t_quanxian t3 on t2.父节点编号 = t3.编号
+  where t3.节点名称 =@父节点名称
+  and 用户名=@userName"/>
+   <SelectShuie value="SELECT t1.[MapId]
+      ,t1.[LayerId]
+      ,t1.[ObjectId]
+      ,t1.[SubLayerId]
+      ,t1.[SubObjectId]
+      ,t1.[Area]
+      ,t1.[TotalArea]
+      ,shuilv.SWJB
+      ,t2.Tax_Rate
+      ,t1.Area*t2.Tax_Rate as shuie
+  FROM [t_parent_child] t1
+  left join @shuilvTable shuilv on shuilv.ObjectId = t1.ObjectId
+  left join [t_tax_level] t2 on t2.MapId = shuilv.MapId and t2.Level_Name = shuilv.SWJB
+  where SubObjectId =@objectId and t1.LayerId =@shuilvLayerId"/>
+   <SelectTudizhengMaxNo value="SELECT MAX(no) from t_tudizheng"/>
+    <DeleteTempData1 value="delete t_tax_select_geom where mapid=@mapid"/>
+    <InsertTempData2 value="insert into t_tax_select_geom(Mapid,layerid,objectid,parentlayerid,parentobjectid) values(@mapid,@layerid,@objectid,@parentlayerid,@parentobjectid)"/>
+    <Report038 value="
+      select
+      t1.[地号]
+      ,t1.[使用权面积]
+      ,t1.[使用权人]
+      ,t1.[地类]
+      ,t1.[使用权类型]
+      ,t1.[土地性质]
+      ,t4.MapId
+      ,t4.LayerId
+      ,t4.ObjectId
+      ,t2.faren_daibiao
+      ,t2.lianxi_dianhua
+      ,t1.[土地证号]
+      ,t_jiedao_name.Name as jiedao_name
+      ,t1.[坐落(土地证)]
+      ,t_qujie_name.Name as qujie_name
+      ,case t1.[减免税依据] when '1' then '免税' else '应税' end as mianshui
+      from t_tax_select_geom t4
+      left join t_parent_child t_jiedao
+      on t4.MapId=t_jiedao.MapId and t4.LayerId=t_jiedao.SubLayerId and t4.ObjectId=t_jiedao.SubObjectId
+      LEFT join t_object t_jiedao_name
+      on t_jiedao.MapId=t_jiedao_name.MapId and t_jiedao.LayerId=t_jiedao_name.LayerId and t_jiedao.ObjectId=t_jiedao_name.ObjectId
+      LEFT join t_parent_child t_qujie
+      on t_jiedao.MapId=t_qujie.MapId and t_jiedao.LayerId=t_qujie.SubLayerId and t_jiedao.ObjectId=t_qujie.SubObjectId
+      LEFT join t_object t_qujie_name
+      on t_qujie.MapId=t_qujie_name.MapId and t_qujie.LayerId=t_qujie_name.LayerId and t_qujie.ObjectId=t_qujie_name.ObjectId
+      LEFT join t_parent_child t_jibie
+      on t4.MapId=t_jibie.MapId and t4.LayerId=t_jibie.SubLayerId and t4.ObjectId=t_jibie.SubObjectId
+      left join t_checked_Data t1
+      on t1.map_id=t4.mapid and t1.layer_id=t4.layerid and t1.geom_id=t4.objectid
+      left join t_gongsi t2
+      on t1.[地号]=t2.dihao and t1.[纳税人识别号]=t2.nashuiren_shibiehao
+      left join @zongdi_table t_zongdi
+      on t4.mapid=t_zongdi.mapid and t_zongdi.layerid=t4.layerid and t4.ObjectId=t_zongdi.objectid
+      where t4.mapid=@mapid
+      and t1.geom_id is not null
+	    and t1.layer_id is not null
+	    and t1.map_id is not null
+      and t_jiedao.LayerId=@jiedao_layerid
+      and t_qujie.LayerId=@qujie_layerid
+      and t_jibie.LayerId =@jibie_layerid
+      and t_qujie_name.Name is not null
+      and t_qujie_name.Name != ''
+      and t_jiedao.Area > (t_jiedao.TotalArea*0.1)
+      and t_qujie.Area > (t_qujie.TotalArea*0.1)
+      and t_jibie.Area > (t_jibie.TotalArea*0.1)
+      and t1.[地号] is not null
+      and t1.[地号] != ''
+      order by t1.[地号]
+    "/>
+    <!--20160516 梅 begin-->>
+    <SelectTheobject value="SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao] 
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,zongdihao
+      ,[no]
+  FROM [t_tudizheng] where layer_id = @layerid and geom_id = @geomid "/>
+    
+    <SelectTheobject10 value="SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao] 
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,zongdihao
+      ,[no]
+  FROM [t_tudizheng] 
+  where dihao = @dihao
+  and layer_id = @layer_id 
+  and geom_id =@geom_id"/>
+    <SelectTheobject11 value="SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao] 
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,zongdihao
+      ,[no]
+  FROM [t_tudizheng] 
+  where dihao = @dihao
+  "/>
+    <Selecttudizhengbianhao value="SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao]
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,[no]
+      ,[zongdihao]
+  FROM [t_tudizheng] where bianhao like @bianhao"/>
+    <SelecttudizhenggeomID value="SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao]
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,[no]
+      ,[zongdihao]
+  FROM [t_tudizheng] where  dihao=@dihao"/>
+    <Selectbianhao value =" SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao] 
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,zongdihao
+      ,[no]
+  FROM [t_tudizheng] where bianhao = @bianhao "/>
+    <Selectbianhao1 value="SELECT [dihao]
+      ,[bianhao]
+      ,[map_id]
+      ,[layer_id]
+      ,[geom_id]
+      ,[quanshu]
+      ,[tuhao]
+      ,[dilei]
+      ,[shiyongquan_leixing]
+      ,[shiyongquanren]
+      ,[zuoluo]
+      ,[qude_jiage]
+      ,[zhongzhi_riqi]
+      ,[shiyongquan_mianji]
+      ,[duyong_mianji]
+      ,[fentan_mianji]
+      ,[shiji_mianji]
+      ,[nashuiren_shibiehao] 
+      ,[mianshui]
+      ,[beizhu]
+      ,[YiJiaoShui]
+      ,[shiyongquanren_bieming]
+      ,[userName]
+      ,[updateTime]
+      ,zongdihao
+      ,[no]
+  FROM [t_tudizheng] where no = @no"/>
+    <!--end-->>
+    <InsertLayerTypeChildAll value="INSERT INTO [t_layerTypeChild]
+           (no
+           ,MapId
+           ,LayerId
+           ,LayerName
+           ,LayerTypeNo)
+     VALUES
+           (@no
+           ,@MapId
+           ,@LayerId
+           ,@LayerName
+           ,@LayerTypeNo)"/>
+    <SelectLayerTypeChild value="SELECT [no]
+      ,[MapId]
+      ,[LayerId]
+      ,[LayerName]
+      ,[LayerTypeNo]
+  FROM [t_layerTypeChild]
+  where LayerTypeNo = @LayerTypeNo"/>
+    <updateLayerType value="update t_layer
+      set 
+      Outline=@Outline,
+      Fill=@Fill,
+      Line=@Line,
+      EnableOutline=@EnableOutline,
+      OutlineWidth=@OutlineWidth,
+      LineWidth=@LineWidth,
+      hatchbrush=@hatchbrush,
+      TextColor=@TextColor,
+      TextFont=@TextFont,
+      Penstyle=@Penstyle
+      where MapId=@MapId
+      and LayerId=@LayerId"/>
+    <updateLayerTypeInit value="INSERT INTO [t_layerType]
+           ([no]
+           ,[LayerTypeName]
+           ,[LayerSort]
+           ,[LayerType]
+           ,[Outline]
+           ,[Fill]
+           ,[Line]
+           ,[EnableOutline]
+           ,[OutlineWidth]
+           ,[LineWidth]
+           ,[Dbf]
+           ,[MaxVisible]
+           ,[MinVisible]
+           ,[hatchbrush]
+           ,[TextColor]
+           ,[TextFont]
+           ,[Penstyle])
+     select [no]
+           ,[LayerTypeName]
+           ,[LayerSort]
+           ,[LayerType]
+           ,[Outline]
+           ,[Fill]
+           ,[Line]
+           ,[EnableOutline]
+           ,[OutlineWidth]
+           ,[LineWidth]
+           ,[Dbf]
+           ,[MaxVisible]
+           ,[MinVisible]
+           ,[hatchbrush]
+           ,[TextColor]
+           ,[TextFont]
+           ,[Penstyle] from t_layerTypeInit where no =@no"/>
+    <deleteLayerType value="DELETE FROM [t_layerType] WHERE no = @no"/>
+
+    <SelectBoatMessageMaxNo value="SELECT MAX(no) from t_boatMessage"/>
+    <InsertBoatMessage value="
+      INSERT INTO [t_boatMessage]
+           ([no],name
+           ,[boatNo]
+           ,[boatType]
+           ,[sailType]
+           ,[boatSize]
+           ,[waterInto]
+           ,[weidu]
+           ,[jingdu]
+           ,[boatHeadWay]
+           ,[boatWay]
+           ,[boatSpeed]
+           ,[destination]
+           ,[preTime]
+           ,[lastTime]
+           ,[beizhu]
+           ,[type]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[userName]
+           ,[updateTime],[problem],rescueNo)
+     VALUES
+           (@no,@name
+           ,@boatNo
+           ,@boatType
+           ,@sailType
+           ,@boatSize
+           ,@waterInto
+           ,@weidu
+           ,@jingdu
+           ,@boatHeadWay
+           ,@boatWay
+           ,@boatSpeed
+           ,@destination
+           ,@preTime
+           ,@lastTime
+           ,@beizhu
+           ,@type
+           ,@map_id
+           ,@layer_id
+           ,@geom_id
+           ,@userName
+           ,@updateTime,@problem,@rescueNo
+           ) "/>
+    <UpdateBoatMessage value="UPDATE [t_boatMessage]
+   SET [boatNo] = @boatNo
+      ,[boatType] = @boatType
+      ,[sailType] = @sailType
+      ,[boatSize] = @boatSize
+      ,[waterInto] = @waterInto
+      ,[weidu] = @weidu
+      ,[jingdu] = @jingdu
+      ,[boatHeadWay] = @boatHeadWay
+      ,[boatWay] = @boatWay
+      ,[boatSpeed] = @boatSpeed
+      ,[destination] = @destination
+      ,[preTime] = @preTime
+      ,[lastTime] = @lastTime
+      ,[beizhu] = @beizhu
+      ,[type] = @type
+      ,[userName] = @userName
+      ,[updateTime] =@updateTime
+   where [no] = @no"/>
+    <DeleteBoatMessage value="delete from t_boatMessage where [no] = @no "/>
+    <SelectBoatMessage value="SELECT * from t_boatMessage where [map_id] = @map_id and layer_id=@layer_id and  geom_id like @geom_id and type =@type and sailType like @problem"/>
+    <SelectProblemBoatMessage value="select * from (select t1.*,
+                                case when t2.boatType is null
+                                    then ''
+                                    else t2.boatType
+                                    end boatType1
+                                    ,t2.* from (select * from @table where ObjectId in (select max(ObjectId) from @table group by ZJMC)) t1
+                              left join t_boatMessage t2 on t1.ZJMC = t2.boatNo) t
+                              where 航行状态 = @航行状态
+                                and ZJMC like @船号
+                                and boatType1 like @船舶类型"/>
+    <SelectBoatMessageByBoatNo value="SELECT * from t_boatMessage where boatNo  = @boatNo"/>
+    <SelectBoatMessageByBoatNo1 value="SELECT t1.no,@boatNo as boatNo,t1.boatType,t1.boatSize,t1.waterInto,t1.beizhu,
+t4.航行状态,t4.纬度,t4.经度,t4.船首向,t4.船迹向, t4.船速,t4.目的地,t4.预到时间,t4.最后时间,t4.ObjectId,t4.LayerId,t4.MapId,t4.*
+from t_boatMessage t1
+full  join  (select * from  @table where ObjectId =(select max(T2.ObjectId) from @table t2 
+left join t_boatMessage t3 on t2.ZJMC = t3.boatNo  where t2.ZJMC = @boatNo group BY t2.ZJMC)) t4 
+on t4.ZJMC = t1.boatNo
+ where t4.ZJMC  = @boatNo"/>
+    <SelectWurenjiMessage value="SELECT * from t_wurenjiMessage where [map_id] = @map_id and layer_id=@layer_id and  geom_id like @geom_id"/>
+    <SelectWurenjiMessageByNo value="SELECT * from t_wurenjiMessage where no = @no"/>
+    <SelectWurenjiMessageByRescueNo value="SELECT t1.[no]
+      ,t1.[无人机救援平台名称]
+      ,t1.[无人机号]
+      ,t1.[无人机类型]
+      ,t1.[状态]
+      ,t1.[测控距离]
+      ,t1.[续航时间]
+      ,t1.[巡航速度]
+      ,t1.[载荷重量]
+      ,t1.[起飞重量]
+      ,t1.[实际升限]
+      ,t1.[任务飞高]
+      ,t1.[导航方式]
+      ,t1.[载荷种类]
+      ,t1.[单收终端]
+      ,t1.[起降方式]
+      ,t1.[抗风等级]
+      ,t1.[抗盐雾能力]
+      ,t1.[防雨性能]
+      ,t1.[环境适应性]
+      ,t1.[抗震动及冲击性]
+      ,t1.[电磁兼容]
+      ,t1.[安全要求]
+      ,t1.[定位精度]
+      ,t1.[遥感数据处理能力]
+      ,t1.[可见光摄像机]
+      ,t1.[红外相机]
+      ,t1.[CCD数码相机]
+      ,t1.[机载稳定平台]
+      ,t2.[目标救援船舶]
+      ,t2.[预到时间]
+      ,t2.[最后时间]
+      ,t1.[备注]
+      ,t1.[map_id]
+      ,t1.[layer_id]
+      ,t1.[geom_id]
+      ,t1.[userName]
+      ,t1.[updateTime]
+      ,t1.[rescueNo] from t_wurenjiMessage t1 left join (select top(1) * from @table order by CreateDate desc) t2 on t1.无人机号 = t2.ZJMC where t1.rescueNo = @rescueNo"/>
+    <SelectWurenjiMessage1 value="SELECT * from t_wurenjiMessage where 无人机号 = @无人机号 and 无人机类型= @无人机类型 and 状态=@状态"/>
+    <SelectWurenjiMessageByName value="SELECT * from t_wurenjiMessage where 无人机号 = @无人机号"/>
+    <SelectBoatMessageByNo value="SELECT * from t_boatMessage where no = @no"/>
+    <SelectBoatMessageByRescueNo value="SELECT t1.*,t2.* from t_boatMessage t1
+LEFT JOIN (select top(1) * from @table order by CreateDate desc) t2 on t1.boatNo=t2.ZJMC where t1.rescueNo = @rescueNo"/>
+    <SearchBoatMessage value="SELECT * from t_boatMessage where boatNo like @boatNo and boatType like @boatType and sailType like @sailType and type =@type"/>
+    <UpdateNewToBoat value="INSERT INTO @table
+           ([MapId]
+           ,[LayerId]
+           ,[ObjectId]
+           ,[propertydate]
+           ,[UpdateDate]
+           ,[CreateDate]
+           ,[OBJECTID_1]
+           ,[BSM]
+           ,[YSDM]
+           ,[ZJMC]
+           ,[FLDM]
+           ,[BZ]
+           ,[CC]
+           ,[船舶类型]
+           ,[航行状态]
+           ,[船长船宽]
+           ,[吃水]
+           ,[纬度]
+           ,[经度]
+           ,[船首向]
+           ,[船迹向]
+           ,[船速]
+           ,[目的地]
+           ,[预到时间]
+           ,[最后时间])
+     VALUES 
+     (@MapId
+      ,@LayerId
+      ,@ObjectId
+      ,@propertydate
+      ,@UpdateDate
+      ,@CreateDate
+      ,''
+      ,''
+      ,''
+      ,@ZJMC
+      ,@FLDM
+      ,''
+      ,''
+      ,@船舶类型
+      ,@航行状态
+      ,@船长船宽
+      ,@吃水
+      ,@纬度
+      ,@经度
+      ,@船首向
+      ,@船迹向
+      ,@船速
+      ,@目的地
+      ,@预到时间
+      ,@最后时间)"/>
+    <SelectMaxObject value="select max(ObjectId) from @table "/>
+    <SelectMaxObjectByBoat value="select max(ObjectId) from @table "/>
+    <SelectMinLinshiBoatId value="select min(ObjectId) from t_69_198 "/>
+    <SelectMaxLinshiBoatId value="select max(ObjectId) from t_69_198 "/>
+    <SelectBoatNewMessage value="select * from @table where  ObjectId = @id"/>
+    <SelectBoatNewMessageMin value="select min(ObjectId) as ObjectId,ZJMC,min(类型) as 类型 from t_69_198 group by ZJMC"/>
+    <UpdateBoatObjectId value="update t_object set ObjectId = @newObjectId,LayerId=@LayerId where ObjectId=@ObjectId and LayerId = '198'"/>
+    <InsertBoatObject value="INSERT INTO [t_object]
+           ([MapId]
+           ,[LayerId]
+           ,[ObjectId]
+           ,[ObjectData]
+           ,[UpdateDate]
+           ,[CreateDate]
+           ,[Name])
+     
+     select [MapId]
+           ,@LayerId
+           ,@newObjectId
+           ,[ObjectData]
+           ,@UpdateDate
+           ,@CreateDate
+           ,[Name] from  t_object where ObjectId=@ObjectId and LayerId = '198'"/>
+    <SelectObjectByName value="select top 1 * from t_object
+      where MapId=@MapId
+      and LayerId=@LayerId
+      and ObjectId !=@ObjectId
+      and Name =@Name order by ObjectId desc
+      "/>
+    <DeleteBoatTempMessage value="delete from t_69_198 where  ObjectId =@id"/>
+    <InsertRange value="INSERT INTO [t_rescueRange]
+           (range)
+     VALUES
+           (@range)"/>
+    <SelectRange value="select * from [t_rescueRange]"/>
+    <UpdateRange value="update [t_rescueRange] set range =@range"/>
+    <InsertRange1 value="INSERT INTO [t_rescueRange]
+           (range1)
+     VALUES
+           (@range)"/>
+    <SelectRange1 value="select range1 from [t_rescueRange]"/>
+    <UpdateRange1 value="update [t_rescueRange] set range1 =@range"/>
+    <SelectSendBoatMaxNo value="SELECT MAX(no) from t_SendBoat"/>
+    <SelectSendBoatByNo1 value="SELECT * from t_SendBoat where no =@no"/>
+    <UpdateSendBoat value="UPDATE [t_SendBoat]
+   SET [boatSpeed] = @boatSpeed
+      ,[beihangTime] = @beihangTime
+      ,rescueEndTime=@rescueEndTime
+      ,rescueStartTime=@rescueStartTime
+      ,[preTime] = @preTime
+      ,[beizhu1] = @beizhu
+ WHERE no = @no"/>
+    <InsertSendBoat value="INSERT INTO [t_SendBoat]
+           ([no]
+           ,[boatNo]
+           ,[boatType]
+           ,[sailType]
+           ,[boatSize]
+           ,[waterInto]
+           ,[weidu]
+           ,[jingdu]
+           ,[boatHeadWay]
+           ,[boatWay]
+           ,[boatSpeed]
+           ,[destination]
+           ,[preTime]
+           ,[lastTime]
+           ,[beizhu]
+           ,[type]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[boatNo1]
+           ,[boatType1]
+           ,[sailType1]
+           ,[boatSize1]
+           ,[waterInto1]
+           ,[weidu1]
+           ,[jingdu1]
+           ,[boatHeadWay1]
+           ,[boatWay1]
+           ,[boatSpeed1]
+           ,[destination1]
+           ,beihangTime
+           ,[preTime1]
+           ,[lastTime1]
+           ,[beizhu1]
+           ,[type1]
+           ,[map_id1]
+           ,[layer_id1]
+           ,[geom_id1]
+           ,[userName]
+           ,[updateTime]
+           ,X,Y,name,uploadFile,rescueEndTime,rescueStartTime)
+     VALUES
+           (@no
+           ,@boatNo
+           ,@boatType
+           ,@sailType
+           ,@boatSize
+           ,@waterInto
+           ,@weidu
+           ,@jingdu
+           ,@boatHeadWay
+           ,@boatWay
+           ,@boatSpeed
+           ,@destination
+           ,@preTime
+           ,@lastTime
+           ,@beizhu
+           ,@type
+           ,@map_id
+           ,@layer_id
+           ,@geom_id
+           ,@boatNo1
+           ,@boatType1
+           ,@sailType1
+           ,@boatSize1
+           ,@waterInto1
+           ,@weidu1
+           ,@jingdu1
+           ,@boatHeadWay1
+           ,@boatWay1
+           ,@boatSpeed1
+           ,@destination1
+           ,@beihangTime
+           ,@preTime1
+           ,@lastTime1
+           ,@beizhu1
+           ,@type1
+           ,@map_id1
+           ,@layer_id1
+           ,@geom_id1
+           ,@userName
+           ,@updateTime
+           ,@X,@Y,@name,@uploadFile,@rescueEndTime,@rescueStartTime)"/>
+
+    <problemBoatSet value="update t_boatMessage set sailType =@sailType where map_id =@map_id and layer_id =@layer_id and geom_id =@geom_id"/>
+    <problemBoatSet1 value="update @table set 航行状态 =@航行状态 where MapId =@map_id and LayerId =@layer_id and ObjectId =@geom_id"/>
+    <!--<SelectBoatMessageForSearch value="select * from t_boatMessage 
+                                where [boatNo] like @boatNo
+                                  and [boatType] like @boatType
+                                  and [sailType] like @sailType
+                                  and type =@type"/>-->
+    <SelectBoatMessageForSearch value="select * from (select t1.*,
+                                case when t2.boatType is null
+                                    then ''
+                                    else t2.boatType
+                                    end boatType1
+                                    ,t2.* from (select * from @table where ObjectId in (select max(ObjectId) from @table group by ZJMC)) t1
+                              left join t_boatMessage t2 on t1.ZJMC = t2.boatNo) t
+                              where [ZJMC] like @boatNo
+                                  and boatType1 like @boatType
+                                  and [航行状态] like @sailType"/>
+    <SelectBoatMessageForSearch1 value="select t1.*
+                                 ,(select count(no) from t_boatMessage t2 where t1.layer_id = t2.layer_id and t1.geom_id = t2.geom_id group by layer_id) as boatNum
+	                               ,(select count(no) from t_boatMessage t3 where t1.layer_id = t3.layer_id and t1.geom_id = t3.geom_id and t3.sailType ='正在救援' group by layer_id) as recueBoatNum
+                                 ,(select count(no) from t_wurenjiMessage t5 where t1.layer_id = t5.layer_id and t1.geom_id = t5.geom_id group by layer_id) as wurenjiNum
+	                               ,(select count(no) from t_wurenjiMessage t6 where t1.layer_id = t6.layer_id and t1.geom_id = t6.geom_id and t6.状态 ='正在救援' group by layer_id) as recueWurenjiNum
+                                 from t_rescueMessage t1
+                                where t1.[rescueName] like @rescueName
+                                  and t1.[tel] like @tel"/>
+
+    <updateBoatSailType value="update t_boatMessage set sailType =@sailType,destination=@destination,preTime=@preTime,lastTime=@lastTime where boatNo =@boatNo"/>
+    <updateWurenjiSailType value="update t_wurenjiMessage set 状态 =@状态,目标救援船舶=@目标救援船舶,预到时间=@预到时间,最后时间=@最后时间 where 无人机号 =@无人机号"/>
+
+    <SelectWurenjiMessageMaxNo value="SELECT MAX(no) from t_wurenjiMessage"/>
+    <InsertWurenjiMessage value="INSERT INTO [t_wurenjiMessage]
+           ([no]
+           ,[无人机救援平台名称]
+           ,[无人机号]
+           ,[无人机类型]
+           ,[状态]
+           ,[测控距离]
+           ,[续航时间]
+           ,[巡航速度]
+           ,[载荷重量]
+           ,[起飞重量]
+           ,[实际升限]
+           ,[任务飞高]
+           ,载荷种类
+           ,[导航方式]
+           ,[单收终端]
+           ,[起降方式]
+           ,[抗风等级]
+           ,[抗盐雾能力]
+           ,[防雨性能]
+           ,[环境适应性]
+           ,[抗震动及冲击性]
+           ,[电磁兼容]
+           ,[安全要求]
+           ,[定位精度]
+           ,[遥感数据处理能力]
+           ,[可见光摄像机]
+           ,[红外相机]
+           ,[CCD数码相机]
+           ,[机载稳定平台]
+           ,[目标救援船舶]
+           ,[预到时间]
+           ,[最后时间]
+           ,[备注]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[userName]
+           ,[updateTime],rescueNo)
+     VALUES
+           (@no
+           ,@无人机救援平台名称
+           ,@无人机号
+           ,@无人机类型
+           ,@状态
+           ,@测控距离
+           ,@续航时间
+           ,@巡航速度
+           ,@载荷重量
+           ,@起飞重量
+           ,@实际升限
+           ,@任务飞高
+           ,@载荷种类
+           ,@导航方式
+           ,@单收终端
+           ,@起降方式
+           ,@抗风等级
+           ,@抗盐雾能力
+           ,@防雨性能
+           ,@环境适应性
+           ,@抗震动及冲击性
+           ,@电磁兼容
+           ,@安全要求
+           ,@定位精度
+           ,@遥感数据处理能力
+           ,@可见光摄像机
+           ,@红外相机
+           ,@CCD数码相机
+           ,@机载稳定平台
+           ,@目标救援船舶
+           ,@预到时间
+           ,@最后时间
+           ,@备注
+           ,@map_id
+           ,@layer_id
+           ,@geom_id
+           ,@userName
+           ,@updateTime,@rescueNo)"/>
+    <UpdateWurenjiMessage value="UPDATE [dbo].[t_wurenjiMessage]
+   SET [no] = @no
+      ,[无人机救援平台名称] = @无人机救援平台名称
+      ,[无人机号] = @无人机号
+      ,[无人机类型] = @无人机类型
+      ,[状态] = @状态
+      ,[测控距离] = @测控距离
+      ,[续航时间] = @续航时间
+      ,[巡航速度] = @巡航速度
+      ,[载荷重量] = @载荷重量
+      ,[起飞重量] = @起飞重量
+      ,[实际升限] = @实际升限
+      ,[任务飞高] = @任务飞高
+      ,载荷种类=@载荷种类
+      ,[导航方式] = @导航方式
+      ,[单收终端] = @单收终端
+      ,[起降方式] = @起降方式
+      ,[抗风等级] = @抗风等级
+      ,[抗盐雾能力] = @抗盐雾能力
+      ,[防雨性能] = @防雨性能
+      ,[环境适应性] = @环境适应性
+      ,[抗震动及冲击性] = @抗震动及冲击性
+      ,[电磁兼容] = @电磁兼容
+      ,[安全要求] = @安全要求
+      ,[定位精度] = @定位精度
+      ,[遥感数据处理能力] = @遥感数据处理能力
+      ,[可见光摄像机] = @可见光摄像机
+      ,[红外相机] = @红外相机
+      ,[CCD数码相机] = @CCD数码相机
+      ,[机载稳定平台] = @机载稳定平台
+      ,[目标救援船舶] = @目标救援船舶
+      ,[预到时间] = @预到时间
+      ,[最后时间] = @最后时间
+      ,[备注] = @备注
+      ,[userName] = @userName
+      ,[updateTime] = @updateTime
+ WHERE [no] = @no"/>
+
+    <DeleteWurenjiMessage value="delete from t_wurenjiMessage where [no] = @no "/>
+    <ReportBoat value="select t2.*
+      from t_tax_select_geom t4
+      left join t_parent_child t7
+      on t4.mapid=t7.mapid and t4.layerid=t7.sublayerid and t4.objectid=t7.subobjectid and t7.layerid=@layer_id
+      left join @table t2 on t2.LayerId=t4.layerid and t2.ObjectId= t4.objectid
+      where t2.ObjectId is not null
+      order by t4.layerid,t4.objectid"/>
+    <ReportRescue value="select t1.*
+                   ,(select count(no) from t_boatMessage t2 where t1.layer_id = t2.layer_id and t1.geom_id = t2.geom_id group by layer_id) as boatNum
+	                 ,(select count(no) from t_boatMessage t3 where t1.layer_id = t3.layer_id and t1.geom_id = t3.geom_id and t3.sailType ='正在救援' group by layer_id) as recueBoatNum
+                   ,(select count(no) from t_wurenjiMessage t5 where t1.layer_id = t5.layer_id and t1.geom_id = t5.geom_id group by layer_id) as wurenjiNum
+	                 ,(select count(no) from t_wurenjiMessage t6 where t1.layer_id = t6.layer_id and t1.geom_id = t6.geom_id and t6.状态 ='正在救援' group by layer_id) as recueWurenjiNum
+      from t_tax_select_geom t4
+      left join t_parent_child t7
+      on t4.mapid=t7.mapid and t4.layerid=t7.sublayerid and t4.objectid=t7.subobjectid and t7.layerid=@layer_id
+      left join t_rescueMessage t1
+      on t1.map_id=t4.mapid and t1.layer_id=t4.layerid and t1.geom_id=t4.objectid
+      where t1.no is not null
+      order by t4.layerid,t4.objectid"/>
+    <ReportWurenji value="select t1.*
+      from t_tax_select_geom t4
+      left join t_parent_child t7
+      on t4.mapid=t7.mapid and t4.layerid=t7.sublayerid and t4.objectid=t7.subobjectid and t7.layerid=@layer_id
+      left join t_wurenjiMessage t1
+      on t1.map_id=t4.mapid and t1.layer_id=t4.layerid and t1.geom_id=t4.objectid
+      where t1.no is not null
+      order by t4.layerid,t4.objectid"/>
+    <SelectBoatMessageByBoatNo value="select * from t_boatMessage where [boatNo] = @boatNo "/>
+    <SelectWurenjiMessageByWurenjiNo value="select * from t_wurenjiMessage where [无人机号] = @无人机号 "/>
+    <InsertRescueBoat value="INSERT INTO @table
+           ([MapId]
+           ,[LayerId]
+           ,[ObjectId]
+           ,[propertydate]
+           ,[UpdateDate]
+           ,[CreateDate]
+           ,[ZJMC]
+           ,[FLDM]
+           ,[船舶类型]
+           ,[航行状态]
+           ,[船长船宽]
+           ,[吃水]
+           ,[纬度]
+           ,[经度]
+           ,[船首向]
+           ,[船迹向]
+           ,[船速]
+           ,[目的地]
+           ,[预到时间]
+           ,[最后时间])
+     VALUES
+           ( @MapId
+           ,@LayerId
+           ,@ObjectId
+           ,@propertydate
+           ,@UpdateDate
+           ,@CreateDate
+           ,@ZJMC
+           ,@FLDM
+           ,@船舶类型
+           ,@航行状态
+           ,@船长船宽
+           ,@吃水
+           ,@纬度
+           ,@经度
+           ,@船首向
+           ,@船迹向
+           ,@船速
+           ,@目的地
+           ,@预到时间
+           ,@最后时间)"/>
+    <InsertWurenji value="INSERT INTO @table
+           ([MapId]
+           ,[LayerId]
+           ,[ObjectId]
+           ,[propertydate]
+           ,[UpdateDate]
+           ,[CreateDate]
+           ,[ZJMC]
+           ,[FLDM]
+           ,[无人机类型]
+           ,[状态]
+           ,[测控距离]
+           ,[续航时间]
+           ,[巡航速度]
+           ,[载荷重量]
+           ,[起飞重量]
+           ,[实际升限]
+           ,[任务飞高]
+           ,[导航方式]
+           ,[单收终端]
+           ,[起降方式]
+           ,[抗风等级]
+           ,[抗盐雾能力]
+           ,[防雨性能]
+           ,[环境适应性]
+           ,[抗震动及冲击性]
+           ,[电磁兼容]
+           ,[安全要求]
+           ,[定位精度]
+           ,[遥感数据处理能力]
+           ,[可见光摄像机]
+           ,[红外相机]
+           ,[CCD数码相机]
+           ,[机载稳定平台]
+           ,[目标救援船舶]
+           ,[预到时间]
+           ,[最后时间])
+     VALUES
+           (@MapId
+           ,@LayerId
+           ,@ObjectId
+           ,@propertydate
+           ,@UpdateDate
+           ,@CreateDate
+           ,@ZJMC
+           ,@FLDM
+           ,@无人机类型
+           ,@状态
+           ,@测控距离
+           ,@续航时间
+           ,@巡航速度
+           ,@载荷重量
+           ,@起飞重量
+           ,@实际升限
+           ,@任务飞高
+           ,@导航方式
+           ,@单收终端
+           ,@起降方式
+           ,@抗风等级
+           ,@抗盐雾能力
+           ,@防雨性能
+           ,@环境适应性
+           ,@抗震动及冲击性
+           ,@电磁兼容
+           ,@安全要求
+           ,@定位精度
+           ,@遥感数据处理能力
+           ,@可见光摄像机
+           ,@红外相机
+           ,@CCD数码相机
+           ,@机载稳定平台
+           ,@目标救援船舶
+           ,@预到时间
+           ,@最后时间)"/>
+    <InsertLinshi value="INSERT INTO @table
+           ([MapId]
+           ,[LayerId]
+           ,[ObjectId]
+           ,[propertydate]
+           ,[UpdateDate]
+           ,[CreateDate]
+           ,[ZJMC]
+           ,[FLDM]
+           ,[船舶类型]
+           ,[航行状态]
+           ,[船长船宽]
+           ,[吃水]
+           ,[纬度]
+           ,[经度]
+           ,[船首向]
+           ,[船迹向]
+           ,[船速]
+           ,[目的地]
+           ,[预到时间]
+           ,[最后时间],类型)
+     VALUES
+           (@MapId
+           ,@LayerId
+           ,@ObjectId
+           ,@propertydate
+           ,@UpdateDate
+           ,@CreateDate
+           ,@ZJMC
+           ,@FLDM
+           ,@船舶类型
+           ,@航行状态
+           ,@船长船宽
+           ,@吃水
+           ,@纬度
+           ,@经度
+           ,@船首向
+           ,@船迹向
+           ,@船速
+           ,@目的地
+           ,@预到时间
+           ,@最后时间,@类型)"/>
+    <SelectSendBoat value="select distinct *,t2.LayerId as layerId_rescue ,t2.ObjectId as geomId_rescue  from t_SendBoat t1   
+                    left join (select distinct max(LayerId) as LayerId,max(ObjectId) as ObjectId,max(Name) as Name  from t_object where Name !=''  group by Name ) t2 on t2.Name = t1.boatNo 
+    where boatNo like @boatNo and boatType like @boatType and boatNo1 like @boatNo1 and boatType1 like @boatType1 "/>
+    <SelectSendBoatByNo value="select t1.* ,t2.测控距离,t2.续航时间,t2.巡航速度,t2.载荷重量,t2.导航方式 from t_SendBoat t1
+    left join t_wurenjiMessage t2 on t1.boatNo= t2.无人机号              
+    where t1.no=@no "/>
+    <SelectRescueMessageMaxNo value="SELECT MAX(no) from t_rescueMessage"/>
+    <SelectRescueMessageByNo value="SELECT * from t_rescueMessage where no = @no"/>
+    <SelectRescueMessage value="SELECT * from t_rescueMessage where [map_id] = @map_id and layer_id=@layer_id and  geom_id like @geom_id"/>
+    <InsertRescueMessage value="INSERT INTO [t_rescueMessage]
+           ([no]
+           ,[rescueName]
+           ,[tel]
+           ,[beizhu]
+           ,[map_id]
+           ,[layer_id]
+           ,[geom_id]
+           ,[userName]
+           ,[updateTime])
+     VALUES
+           (@no
+           ,@rescueName
+           ,@tel
+           ,@beizhu
+           ,@map_id
+           ,@layer_id
+           ,@geom_id
+           ,@userName
+           ,@updateTime)"/>
+    <UpdateRescueMessage value="UPDATE [t_rescueMessage]
+   SET [rescueName] = @rescueName
+      ,[tel] = @tel
+      ,[beizhu] = @beizhu
+      ,[map_id] = @map_id
+      ,[layer_id] = @layer_id
+      ,[geom_id] = @geom_id
+      ,[userName] = @userName
+      ,[updateTime] = @updateTime
+      where no=@no"/>
+<SelectGuiji value="select * from t_object t1 left join
+(SELECT   Name,max(LayerId) as LayerId
+FROM      t_object
+GROUP BY Name
+HAVING   (COUNT(Name) > 2))t2 on t1.Name = t2.Name and t1.LayerId = t2.LayerId
+WHERE (t1.LayerId =@LayerId1 OR t1.LayerId =@LayerId2 OR t1.LayerId =@LayerId3) and t1.CreateDate &gt;=  @CreateDate1 and t1.CreateDate &lt;=  @CreateDate2 and t1.Name in (select Name from t_select_point)
+order by t1.Name,t1.CreateDate desc
+"/>
+    <SelectGuijiById value="select * from t_object 
+                    where Name= @Name and LayerId=@LayerId and CreateDate &gt;=  @CreateDate1 and CreateDate &lt;=  @CreateDate2
+                    order by CreateDate
+"/>
+    <SelectMessageByName value="select * from @table where  ZJMC like @name"/>
+
+    <DeleteTempPoint value="delete t_select_point"/>
+    <InsertTempPoint value="insert into t_select_point(id,Name) values(@id,@Name)"/>
+    <updateProblemBoat value="update @table set 航行状态=@航行状态 where ZJMC= @ZJMC"/>
+    <SelectRescueBoatMessage value="SELECT [no]
+      ,[name]
+      ,[boatNo] as ZJMC
+      ,[boatType]
+      ,[sailType] as 航行状态
+      ,[boatSize] 
+      ,[waterInto] 
+      ,[weidu] as 纬度
+      ,[jingdu] as 经度
+      ,[boatHeadWay] as 船首向
+      ,[boatWay] as 船迹向
+      ,[boatSpeed] as 船速
+      ,[destination] as 目的地
+      ,[preTime] as 预到时间
+      ,[lastTime] as 最后时间
+      ,[beizhu]
+      ,[type]
+      ,[map_id] as MapId
+      ,[layer_id] as LayerId
+      ,[geom_id] as ObjectId
+      ,[userName]
+      ,[updateTime]
+      ,[problem]
+      ,[state]
+      ,[rescueNo]
+  FROM [t_boatMessage] where rescueNo like @rescueNo and boatNo like @船号 and boatType like @船舶类型"/>
+  </appSettings>
+</root>

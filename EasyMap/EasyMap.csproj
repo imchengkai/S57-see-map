@@ -1,0 +1,1144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{73A45373-6307-4D39-9FE9-E8803F95FAB6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyMap</RootNamespace>
+    <AssemblyName>EasyMap</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ApplicationIcon>globe.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\OutPut\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GisSharpBlog,UseMapBox</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\OutPut\</OutputPath>
+    <DefineConstants>TRACE;GisSharpBlog,UseMapBox</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ArtTextLabel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ArtTextLabel.dll</HintPath>
+    </Reference>
+    <Reference Include="BruTile, Version=0.5.1.0, Culture=neutral, PublicKeyToken=00e75fd79e391f40, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\BruTile.dll</HintPath>
+    </Reference>
+    <Reference Include="ButtonEx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ButtonEx.dll</HintPath>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.3DAnalyst, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\ESRI.ArcGIS.3DAnalyst\10.2.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.3DAnalyst.dll</HintPath>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ADF.Local, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\SysWOW64\ESRI.ArcGIS.ADF.Local.dll</HintPath>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Version, Version=10.1.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <HintPath>C:\Windows\SysWOW64\ESRI.ArcGIS.Version.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="gdal_csharp, Version=1.0.3671.21225, Culture=neutral, PublicKeyToken=db5a52b08dc5b321">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\gdal_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\GeoAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="netchartdir_cp, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\netchartdir_cp.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite, Version=1.7.3.30582, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\NetTopologySuite.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.11.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="ogr_csharp, Version=1.0.3671.21225, Culture=neutral, PublicKeyToken=db5a52b08dc5b321">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ogr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.102.2.10, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="osr_csharp, Version=1.0.3671.21224, Culture=neutral, PublicKeyToken=db5a52b08dc5b321">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\osr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OwnerDrawSystemMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\OwnerDrawSystemMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="PostgreSql.Data.PostgreSqlClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=67eb7b24561f0df3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\PostgreSql.Data.PostgreSqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjNET, Version=1.2.3882.19088, Culture=neutral, PublicKeyToken=a1f5bdcd9c6f5740, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\ProjNET.dll</HintPath>
+    </Reference>
+    <Reference Include="SkinForm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\SkinForm.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="SystemMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\SystemMenu.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addUser.Designer.cs">
+      <DependentUpon>addUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaColor.cs" />
+    <Compile Include="AreaData.cs" />
+    <Compile Include="AreaDefineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaDefineForm.Designer.cs">
+      <DependentUpon>AreaDefineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaTipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaTipForm.Designer.cs">
+      <DependentUpon>AreaTipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseFieldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseFieldForm.Designer.cs">
+      <DependentUpon>ChooseFieldForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="Command\CommandExecute.cs" />
+    <Compile Include="Command\CommandType.cs" />
+    <Compile Include="Command\GDAL_Data.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Controls\MyFlag.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MyFlag.Designer.cs">
+      <DependentUpon>MyFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MyList.cs" />
+    <Compile Include="Controls\MyToolTipControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MyToolTipControl.Designer.cs">
+      <DependentUpon>MyToolTipControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProjectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProjectControl.Designer.cs">
+      <DependentUpon>ProjectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Waiting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Waiting.Designer.cs">
+      <DependentUpon>Waiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSearchForm.Designer.cs">
+      <DependentUpon>DataSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBForm.Designer.cs">
+      <DependentUpon>DBForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBLink\MapDBClass.cs" />
+    <Compile Include="FieldDefineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FieldDefineForm.Designer.cs">
+      <DependentUpon>FieldDefineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ILayerFactory.cs" />
+    <Compile Include="InputGeometryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputGeometryForm.Designer.cs">
+      <DependentUpon>InputGeometryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputKeyForm.Designer.cs">
+      <DependentUpon>InputKeyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuijiSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuijiSearchForm.Designer.cs">
+      <DependentUpon>GuijiSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayerStyleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LayerStyleForm.Designer.cs">
+      <DependentUpon>LayerStyleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="loginPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="loginPic.Designer.cs">
+      <DependentUpon>loginPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MapControl.Designer.cs">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapExtensions\Data\FwToolsHelper.cs" />
+    <Compile Include="MapExtensions\Layers\GdalRasterLayer.cs" />
+    <Compile Include="MapExtensions\Layers\GdalRasterLayerCachingProxy.cs" />
+    <Compile Include="MapExtensions\Layers\GeoTransform.cs" />
+    <Compile Include="MapInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapInputForm.Designer.cs">
+      <DependentUpon>MapInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapListForm.Designer.cs">
+      <DependentUpon>MapListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapUI\Forms\InputStringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapUI\Forms\InputStringForm.Designer.cs">
+      <DependentUpon>InputStringForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapUI\Forms\MapBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MapUI\Forms\MapImage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MapUI\MapEditImage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MapUI\MapEditImage.Designer.cs">
+      <DependentUpon>MapEditImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeasureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeasureForm.Designer.cs">
+      <DependentUpon>MeasureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultAreaDataSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultAreaDataSearchForm.Designer.cs">
+      <DependentUpon>MultAreaDataSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParameterForm.Designer.cs">
+      <DependentUpon>ParameterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParameterSettingForm.Designer.cs">
+      <DependentUpon>ParameterSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoData.cs" />
+    <Compile Include="PhotoParentChild.cs" />
+    <Compile Include="PictureViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PictureViewForm.Designer.cs">
+      <DependentUpon>PictureViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PolygonPropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolygonPropertyForm.Designer.cs">
+      <DependentUpon>PolygonPropertyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectAddForm.Designer.cs">
+      <DependentUpon>ProjectAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectAreaData.cs" />
+    <Compile Include="ProjectAreaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectAreaForm.Designer.cs">
+      <DependentUpon>ProjectAreaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectAreaPriceReportConditionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectAreaPriceReportConditionForm.Designer.cs">
+      <DependentUpon>ProjectAreaPriceReportConditionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectData.cs" />
+    <Compile Include="ProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectForm.Designer.cs">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ChoosePicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChoosePicForm.Designer.cs">
+      <DependentUpon>ChoosePicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SetParentChildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetParentChildForm.designer.cs">
+      <DependentUpon>SetParentChildForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetTypeForm.Designer.cs">
+      <DependentUpon>SetTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TudiSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TudiSettingForm.Designer.cs">
+      <DependentUpon>TudiSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs" />
+    <Compile Include="passwordUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="passwordUpdate.Designer.cs">
+      <DependentUpon>passwordUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputPolygonSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputPolygonSelectForm.Designer.cs">
+      <DependentUpon>InputPolygonSelectForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addUser.resx">
+      <DependentUpon>addUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaDefineForm.resx">
+      <DependentUpon>AreaDefineForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseFieldForm.resx">
+      <DependentUpon>ChooseFieldForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSearchForm.resx">
+      <DependentUpon>DataSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBForm.resx">
+      <DependentUpon>DBForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FieldDefineForm.resx">
+      <DependentUpon>FieldDefineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputGeometryForm.resx">
+      <DependentUpon>InputGeometryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuijiSearchForm.resx">
+      <DependentUpon>GuijiSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerStyleForm.resx">
+      <DependentUpon>LayerStyleForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loginPic.resx">
+      <DependentUpon>loginPic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapInputForm.resx">
+      <DependentUpon>MapInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapListForm.resx">
+      <DependentUpon>MapListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasureForm.resx">
+      <DependentUpon>MeasureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultAreaDataSearchForm.resx">
+      <DependentUpon>MultAreaDataSearchForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterForm.resx">
+      <DependentUpon>ParameterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolygonPropertyForm.resx">
+      <DependentUpon>PolygonPropertyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetParentChildForm.resx">
+      <DependentUpon>SetParentChildForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetTypeForm.resx">
+      <DependentUpon>SetTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowPictureForm.resx">
+      <DependentUpon>ShowPictureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TudiSettingForm.resx">
+      <DependentUpon>TudiSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user_quanxian.resx">
+      <DependentUpon>user_quanxian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XYInputForm.resx">
+      <DependentUpon>XYInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoosePicForm.resx">
+      <DependentUpon>ChoosePicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="passwordUpdate.resx">
+      <DependentUpon>passwordUpdate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputPolygonSelectForm.resx">
+      <DependentUpon>InputPolygonSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ServerSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerSettingForm.Designer.cs">
+      <DependentUpon>ServerSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShapeFileLayerFactory.cs" />
+    <Compile Include="ShowPictureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowPictureForm.Designer.cs">
+      <DependentUpon>ShowPictureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableControlForm.Designer.cs">
+      <DependentUpon>TableControlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TifData.cs" />
+    <Compile Include="TifSplitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TifSplitForm.Designer.cs">
+      <DependentUpon>TifSplitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user_quanxian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user_quanxian.Designer.cs">
+      <DependentUpon>user_quanxian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XYInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XYInputForm.Designer.cs">
+      <DependentUpon>XYInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZoomListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZoomListForm.Designer.cs">
+      <DependentUpon>ZoomListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZoomVisibleSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZoomVisibleSetForm.Designer.cs">
+      <DependentUpon>ZoomVisibleSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZoonChange.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddTableHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RemoveTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomToExtents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zoom Out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zoom In.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditTableHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewRandomGeometry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DATABASE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PIE DIAGRAM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBSQL.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="globe.ico" />
+    <EmbeddedResource Include="AreaTipForm.resx">
+      <DependentUpon>AreaTipForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MyFlag.resx">
+      <DependentUpon>MyFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MyToolTipControl.resx">
+      <DependentUpon>MyToolTipControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProjectControl.resx">
+      <DependentUpon>ProjectControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Waiting.resx">
+      <DependentUpon>Waiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputKeyForm.resx">
+      <DependentUpon>InputKeyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Resources\1.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\right_over.png" />
+    <None Include="Resources\up_down.png" />
+    <None Include="Resources\up_normal.png" />
+    <None Include="Resources\up_over.png" />
+    <None Include="Resources\zoomin_down.png" />
+    <None Include="Resources\zoomin_normal.png" />
+    <None Include="Resources\zoomin_over.png" />
+    <None Include="Resources\zoomout_down.png" />
+    <None Include="Resources\zoomout_normal.png" />
+    <None Include="Resources\zoomout_over.png" />
+    <None Include="Resources\down_down.png" />
+    <None Include="Resources\down_normal.png" />
+    <None Include="Resources\down_over.png" />
+    <None Include="Resources\left_down.png" />
+    <None Include="Resources\left_normal.png" />
+    <None Include="Resources\left_over.png" />
+    <None Include="Resources\right_down.png" />
+    <None Include="Resources\right_normal.png" />
+    <None Include="Resources\13221819.gif" />
+    <None Include="Resources\plus_select.png" />
+    <None Include="Resources\area_zoom_normal.png" />
+    <None Include="Resources\area_zoom_select.png" />
+    <None Include="Resources\ball_normal.png" />
+    <None Include="Resources\bar1.png" />
+    <None Include="Resources\bar2.png" />
+    <None Include="Resources\bar3.png" />
+    <None Include="Resources\bar4.png" />
+    <None Include="Resources\minus_normal.png" />
+    <None Include="Resources\minus_select.png" />
+    <None Include="Resources\plus_normal.png" />
+    <None Include="Resources\waiting.png" />
+    <None Include="Resources\PickUpStyle.png" />
+    <None Include="Resources\bollon_normal1.png" />
+    <None Include="Resources\bollon_normal2.png" />
+    <None Include="Resources\bollon_normal.png" />
+    <None Include="Resources\bollon_select2.png" />
+    <None Include="Resources\bollon_select.png" />
+    <None Include="Resources\TextWrappingThrough.png" />
+    <None Include="Resources\DeclineTask.png" />
+    <None Include="Resources\zoom_full.png" />
+    <None Include="Resources\zoom_old.png" />
+    <None Include="Resources\OutlineDemote.png" />
+    <None Include="Resources\OutlinePromote.png" />
+    <None Include="Resources\polygon.png" />
+    <None Include="Resources\BlogOpenExisting.png" />
+    <None Include="Resources\BlogInsertCategories.png" />
+    <None Include="Resources\rectangle.png" />
+    <None Include="Resources\circle1.png" />
+    <None Include="Resources\circle.png" />
+    <None Include="Resources\free.png" />
+    <None Include="Resources\Camera.png" />
+    <None Include="Resources\FileDocumentEncrypt.png" />
+    <None Include="Resources\GroupMasterClose.png" />
+    <None Include="Resources\GroupMasterClose1.png" />
+    <None Include="Resources\MailMergeGotToLastRecord.png" />
+    <None Include="Resources\MailMergeGoToFirstRecord.png" />
+    <None Include="Resources\MailMergeGoToNextRecord.png" />
+    <None Include="Resources\MailMergeGoToPreviousRecord.png" />
+    <None Include="Resources\FooterInsertGallery.png" />
+    <None Include="Resources\FootnotesEndnotesShow.png" />
+    <None Include="Resources\TextStylesGallery.png" />
+    <None Include="Resources\ImportMoreMenu.png" />
+    <None Include="Resources\BlogPublish.png" />
+    <None Include="Resources\Grammar.png" />
+    <None Include="Resources\Solid.png" />
+    <None Include="Resources\22222.jpg" />
+    <None Include="Resources\info1.png" />
+    <None Include="Resources\info2.png" />
+    <None Include="Resources\_3DLightingGalleryClassic.png" />
+    <None Include="Resources\ApplyCurrencyFormat.png" />
+    <None Include="Resources\其他.png" />
+    <None Include="Resources\学校.png" />
+    <None Include="Resources\医院.png" />
+    <None Include="Resources\政府.png" />
+    <None Include="Resources\blank.png" />
+    <None Include="Resources\登录1.png" />
+    <None Include="Resources\用户登录.png" />
+    <None Include="Resources\clear.png" />
+    <None Include="Resources\clear.jpg" />
+    <None Include="Resources\iconpng.png" />
+    <None Include="Resources\登录2.png" />
+    <Content Include="Settings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\_3DEffectsOnOffClassic.png" />
+    <None Include="Resources\ShapeCurve.png" />
+    <None Include="Resources\FilePrintPreview.png" />
+    <None Include="Resources\PrintSetupDialog.png" />
+    <None Include="Resources\ZoomToSelection.png" />
+    <None Include="Resources\ZoomFitToWindow.png" />
+    <None Include="Resources\CalendarInsert.png" />
+    <None Include="Resources\point.png" />
+    <EmbeddedResource Include="Controls\MapControl.resx">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapUI\Forms\InputStringForm.resx">
+      <DependentUpon>InputStringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapUI\Forms\MapImage.resx">
+      <DependentUpon>MapImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterSettingForm.resx">
+      <DependentUpon>ParameterSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PictureViewForm.resx">
+      <DependentUpon>PictureViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectAddForm.resx">
+      <DependentUpon>ProjectAddForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectAreaForm.resx">
+      <DependentUpon>ProjectAreaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectAreaPriceReportConditionForm.resx">
+      <DependentUpon>ProjectAreaPriceReportConditionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectForm.resx">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerSettingForm.resx">
+      <DependentUpon>ServerSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableControlForm.resx">
+      <DependentUpon>TableControlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TifSplitForm.resx">
+      <DependentUpon>TifSplitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZoomListForm.resx">
+      <DependentUpon>ZoomListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZoomVisibleSetForm.resx">
+      <DependentUpon>ZoomVisibleSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Resources\RelationshipsReportNew.png" />
+    <None Include="Resources\FlagSelect.png" />
+    <None Include="Resources\DiagramChangeToTargetClassicSelect.png" />
+    <None Include="Resources\about.png" />
+    <None Include="Resources\FindDialog1.png" />
+    <None Include="Resources\resourcesNew.gif" />
+    <None Include="Resources\HomeNew.png" />
+    <None Include="Resources\ReviewShareWorkbookNew.png" />
+    <None Include="Resources\ActiveXImageNew.png" />
+    <None Include="Resources\resources.gif" />
+    <None Include="Resources\ReviewShareWorkbook.png" />
+    <None Include="Resources\RelationshipsReport.png" />
+    <None Include="Resources\ReviewCompareTwoVersions.png" />
+    <None Include="Resources\ActiveXImage.png" />
+    <None Include="Resources\BorderDrawGrid.png" />
+    <None Include="Resources\xypoint.png" />
+    <None Include="Resources\point1.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\TableBorderPenColorPicker.png" />
+    <None Include="Resources\_3DEffectColorPickerClassic.png" />
+    <None Include="Resources\ZoomDialog.png" />
+    <None Include="Resources\ObjectEditPoints.png" />
+    <None Include="Resources\MoreControlsDialog.png" />
+    <None Include="Resources\GroupTable.png" />
+    <None Include="Resources\GroupMacroTools.png" />
+    <None Include="Resources\FindDialog.png" />
+    <None Include="Resources\EquationFractionGallery.png" />
+    <None Include="Resources\DiagramChangeToTargetClassic.png" />
+    <None Include="Resources\DatabaseCopyDatabaseFile.png" />
+    <None Include="Resources\ChartTypeAreaInsertGallery.png" />
+    <None Include="Resources\ChartSaveTemplates.png" />
+    <None Include="Resources\ChartInsert.png" />
+    <None Include="Resources\BorderMoreColorsDialog.png" />
+    <None Include="Resources\BlogManageAccounts.png" />
+    <None Include="Resources\AutoSum.png" />
+    <None Include="Resources\MailMergeCreateList.png" />
+    <None Include="Resources\GroupViews.png" />
+    <None Include="Resources\Cut.png" />
+    <None Include="Resources\AdpDiagramDeleteTable.png" />
+    <None Include="Resources\SaveAndClose.png" />
+    <None Include="Resources\Copy.png" />
+    <None Include="Resources\ExportExcel.png" />
+    <None Include="Resources\_3DBevelPictureTopGallery.png" />
+    <None Include="Resources\FindRelatedMenu.png" />
+    <None Include="Resources\FileOpen.png" />
+    <None Include="Resources\FileNew.png" />
+    <None Include="Resources\RulerShowHide.png" />
+    <None Include="Resources\PropertySheet.png" />
+    <None Include="Resources\PrintDialogAccess.png" />
+    <None Include="Resources\Paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlLib\ControlLib.csproj">
+      <Project>{38A5642D-D7A9-4933-86F7-D03D2C817510}</Project>
+      <Name>ControlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoorCon\CoorCon.csproj">
+      <Project>{4363e99d-28c0-4e61-b9ed-ef72341e1905}</Project>
+      <Name>CoorCon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBLib\DBLib.csproj">
+      <Project>{F63416CA-23C4-413F-B676-B7737A700081}</Project>
+      <Name>DBLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dock\Dock.csproj">
+      <Project>{F2999C1D-BED3-4D47-A8AC-8027334ECDC1}</Project>
+      <Name>Dock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MapLib\MapLib.csproj">
+      <Project>{B36D154A-45DC-4F3F-A002-2A30DCF20783}</Project>
+      <Name>MapLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Report\Report.csproj">
+      <Project>{E2F4B78C-B025-48A7-8B1D-7E6DFE7B6BA4}</Project>
+      <Name>Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tax\Tax.csproj">
+      <Project>{7df38540-ad43-4825-a63b-73d493a55276}</Project>
+      <Name>Tax</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ArcGISVersionLib">
+      <Guid>{6FCCEDE0-179D-4D12-B586-58C88D26CA78}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxShockwaveFlashObjects">
+      <Guid>{D27CDB6B-AE6D-11CF-96B8-444553540000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="esriAnimation">
+      <Guid>{643D491A-D5BD-4788-B610-A0F53CBA0940}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriCarto">
+      <Guid>{45AC68FF-DEFF-4884-B3A9-7D882EDCAEF1}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriControls">
+      <Guid>{033364CA-47F9-4251-98A5-C88CD8D3C808}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriDataSourcesFile">
+      <Guid>{1CE6AC65-43F5-4529-8FC0-D7ED298E4F1A}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriDataSourcesNetCDF">
+      <Guid>{28ED84CD-FB06-41A0-9A55-E196441D169A}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriDataSourcesRaster">
+      <Guid>{8F0541A3-D5BE-4B3F-A8D9-062D5579E19B}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriDisplay">
+      <Guid>{59FCCD31-434C-4017-BDEF-DB4B7EDC9CE0}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriGeoDatabase">
+      <Guid>{0475BDB1-E5B2-4CA2-9127-B4B1683E70C2}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriGeometry">
+      <Guid>{C4B094C2-FF32-4FA1-ABCB-7820F8D6FB68}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriGeoprocessing">
+      <Guid>{C031A050-82C6-4F8F-8836-5692631CFFE6}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriGISClient">
+      <Guid>{746F6817-89BB-4490-9829-83CA25FD505A}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriGlobeCore">
+      <Guid>{00B329B5-265E-11D6-B2B4-00508BCDDE28}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriNetworkAnalyst">
+      <Guid>{9B4F73F7-90C0-11D5-A6C3-0008C7DF88AB}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriOutput">
+      <Guid>{7DB92CEC-CB65-420A-8737-FCD0722FD436}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriServer">
+      <Guid>{18F2FC71-6B30-45B9-B101-037A8B868B66}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriSystem">
+      <Guid>{5E1F7BC3-67C5-4AEE-8EC6-C4B73AAC42ED}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="esriSystemUI">
+      <Guid>{4ECCA6E2-B16B-4ACA-BD17-E74CAE4C150A}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="ShockwaveFlashObjects">
+      <Guid>{D27CDB6B-AE6D-11CF-96B8-444553540000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
